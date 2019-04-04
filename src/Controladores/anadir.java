@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class anadir {
@@ -31,10 +32,10 @@ public class anadir {
 		String kilometros = textKM.getText();
 		String precio = textPrecio.getText();
 		String matricula = textMatricula.getText();
-		
+
 		Statement consulta = conexionBBDD().createStatement();
 		int resultado;
-		
+
 		PreparedStatement consultaprep = conexionBBDD().prepareStatement("INSERT INTO coches VALUES (?,?,?,?,?,?)");
 		consultaprep.setString(1, matricula);
 		consultaprep.setString(2, marca);
@@ -43,5 +44,9 @@ public class anadir {
 		consultaprep.setString(5, precio);
 		consultaprep.setString(6, kilometros);
 		resultado = consultaprep.executeUpdate();
+		JOptionPane.showMessageDialog(null,
+				"Se han incluido los siguientes datos en la base de datos\nMatricula: " + matricula + "\nMarca: "
+						+ marca + "\nModelo: " + modelo + "\nAño: " + ano + "\nKilometros: " + kilometros + "\nPrecio: "
+						+ precio);
 	}
 }

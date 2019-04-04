@@ -78,6 +78,12 @@ public class MenuTienda extends JFrame {
 		contentPane.add(buttonListar);
 		
 		JButton btnAadirProductos = new JButton("A\u00F1adir productos");
+		btnAadirProductos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Anadir.main(null);
+				setVisible(false);
+			}
+		});
 		btnAadirProductos.setFont(new Font("Calibri", Font.BOLD, 19));
 		btnAadirProductos.setBounds(10, 107, 190, 50);
 		contentPane.add(btnAadirProductos);

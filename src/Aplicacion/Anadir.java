@@ -157,6 +157,18 @@ public class Anadir extends JFrame {
 		btnAadir.setBackground(Color.LIGHT_GRAY);
 		btnAadir.setBounds(259, 28, 156, 36);
 		contentPane.add(btnAadir);
+		
+		JButton button = new JButton("Volver al menu");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MenuTienda.main(null);
+				setVisible(false);
+			}
+		});
+		button.setFont(new Font("Calibri", Font.BOLD, 18));
+		button.setBackground(Color.LIGHT_GRAY);
+		button.setBounds(260, 74, 155, 36);
+		contentPane.add(button);
 
 		// Listener para controlar ambos comboBox
 		String marca = (String) marcacomboBox.getSelectedItem();

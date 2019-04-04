@@ -12,6 +12,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class borrar {
+	/***
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
 	public static Connection conexionBBDD() throws SQLException {
 		// CONEXION CON LA BASE DE DATOS
 		String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -23,6 +28,11 @@ public class borrar {
 		Connection conexion = DriverManager.getConnection(url, user, password);
 		return conexion;
 	}
+	/***
+	 * 
+	 * @param textMatricula
+	 * @throws SQLException
+	 */
 	public static void borrar(JTextField textMatricula) throws SQLException {
 		String matricula = textMatricula.getText();
 		Statement consulta = conexionBBDD().createStatement();
