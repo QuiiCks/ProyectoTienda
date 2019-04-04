@@ -18,8 +18,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Cursor;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
 
 public class Login extends JFrame {
 
@@ -80,6 +86,12 @@ public class Login extends JFrame {
 		textPassword.setBounds(21, 149, 156, 26);
 		contentPane.add(textPassword);
 		
+		JCheckBox checkRecuerdame = new JCheckBox("Recuerdame");
+		checkRecuerdame.setFont(new Font("Calibri", Font.BOLD, 15));
+		checkRecuerdame.setBackground(new Color(127, 255, 212));
+		checkRecuerdame.setBounds(184, 152, 133, 23);
+		contentPane.add(checkRecuerdame);
+		
 		JButton buttonLogin = new JButton("Login");
 		buttonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -89,6 +101,18 @@ public class Login extends JFrame {
 					if(Controladores.buttons.buttonLogin(textUser, textPassword)) {
 						MenuTienda.main(null);
 						setVisible(false);
+						if(checkRecuerdame.isSelected()) {
+							FileWriter writer;
+							try {
+								writer = new FileWriter("src/login/recuerdame.txt");
+								writer.write(textUser.getText()+"\n"+textPassword.getText());
+								writer.close();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							
+						}
 					}
 					
 				} catch (SQLException e) {
@@ -120,6 +144,26 @@ public class Login extends JFrame {
 		labelWelcome.setFont(new Font("Lucida Handwriting", Font.BOLD, 22));
 		labelWelcome.setBounds(21, 11, 156, 49);
 		contentPane.add(labelWelcome);
-	}
+		
+		String ruta = "src/login/recuerdame.txt";
+		File fichero = new File(ruta);
+		Scanner teclado;
+		try {
+			teclado = new Scanner(fichero);
+			while (teclado.hasNext()) {
+				String data = teclado.nextLine();
+				textPassword.setText(data);
+				if(teclado.hasNext()) {
+					textUser.setText(data);
+				}
+			}
 
+			teclado.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		
+	}
 }
