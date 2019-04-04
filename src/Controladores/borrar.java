@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 public class borrar {
 	/***
-	 * 
+	 * src/main/resources
 	 * @return
 	 * @throws SQLException
 	 */

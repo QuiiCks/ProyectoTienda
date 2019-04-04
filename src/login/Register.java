@@ -83,6 +83,7 @@ public class Register extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Controladores.buttons.buttonRegister(textUser, textPassword);
+					Login.main(null);
 					setVisible(false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
