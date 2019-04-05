@@ -23,6 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Anadir extends JFrame {
 
@@ -52,11 +53,12 @@ public class Anadir extends JFrame {
 	 * Create the frame.
 	 */
 	public Anadir() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Anadir.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop - A\u00F1adir");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 519, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(127, 255, 212));
+		contentPane.setBackground(new Color(128, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

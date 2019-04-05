@@ -26,6 +26,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
+import java.awt.Toolkit;
 
 public class Login extends JFrame {
 
@@ -53,13 +54,14 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/recursos/Logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setFont(new Font("Calibri", Font.BOLD, 18));
 		setTitle("Login");
 		setBackground(Color.GRAY);
 		setBounds(100, 100, 400, 370);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(127, 255, 212));
+		contentPane.setBackground(new Color(128, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -88,7 +90,7 @@ public class Login extends JFrame {
 		
 		JCheckBox checkRecuerdame = new JCheckBox("Recuerdame");
 		checkRecuerdame.setFont(new Font("Calibri", Font.BOLD, 15));
-		checkRecuerdame.setBackground(new Color(127, 255, 212));
+		checkRecuerdame.setBackground(new Color(128, 0, 0));
 		checkRecuerdame.setBounds(184, 152, 133, 23);
 		contentPane.add(checkRecuerdame);
 		
@@ -144,6 +146,8 @@ public class Login extends JFrame {
 		labelWelcome.setFont(new Font("Lucida Handwriting", Font.BOLD, 22));
 		labelWelcome.setBounds(21, 11, 156, 49);
 		contentPane.add(labelWelcome);
+		
+		
 		
 		String ruta = "src/login/recuerdame.txt";
 		File fichero = new File(ruta);

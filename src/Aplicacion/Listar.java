@@ -27,6 +27,7 @@ import java.awt.event.ItemEvent;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import java.awt.Toolkit;
 
 public class Listar extends JFrame {
 
@@ -56,11 +57,12 @@ public class Listar extends JFrame {
 	 * Create the frame.
 	 */
 	public Listar() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Listar.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop - Listar");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 808, 386);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(127, 255, 212));
+		contentPane.setBackground(new Color(128, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

@@ -26,6 +26,7 @@ import Controladores.borrar;
 import javax.swing.JLayeredPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class MenuTienda extends JFrame {
 
@@ -51,11 +52,12 @@ public class MenuTienda extends JFrame {
 	 * Create the frame.
 	 */
 	public MenuTienda() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuTienda.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 280, 281);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(127, 255, 212));
+		contentPane.setBackground(new Color(128, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
