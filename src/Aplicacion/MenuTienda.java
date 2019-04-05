@@ -28,6 +28,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
+/**
+ * 
+ * @author Javi
+ *
+ */
 public class MenuTienda extends JFrame {
 
 	private JPanel contentPane;
@@ -47,10 +52,7 @@ public class MenuTienda extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public MenuTienda() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuTienda.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop");

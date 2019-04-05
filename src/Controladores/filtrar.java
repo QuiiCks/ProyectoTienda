@@ -17,6 +17,11 @@ import javax.swing.table.DefaultTableModel;
 import Aplicacion.Listar;
 
 public class filtrar {
+	/**
+	 * METODO PARA CONECTAR CON LA BASE DE DATOS
+	 * @return
+	 * @throws SQLException
+	 */
 	public static Connection conexionBBDD() throws SQLException {
 		// CONEXION CON LA BASE DE DATOS
 		String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -28,7 +33,16 @@ public class filtrar {
 		Connection conexion = DriverManager.getConnection(url, user, password);
 		return conexion;
 	}
-
+	/**
+	 * METODO PARA FILTRAR LOS VEHICULOS
+	 * @param marcacomboBox
+	 * @param modelocomboBox
+	 * @param textAno
+	 * @param textKM0
+	 * @param textKM1
+	 * @param tablaConsultas
+	 * @throws SQLException
+	 */
 	public static void filtrar(JComboBox marcacomboBox, JComboBox modelocomboBox, JTextField textAno,
 			JTextField textKM0, JTextField textKM1, JTable tablaConsultas) throws SQLException {
 
@@ -41,7 +55,10 @@ public class filtrar {
 		Statement consulta = conexionBBDD().createStatement();
 		ResultSet resultado;
 
-		// MUESTRA TODOS LOS COCHES
+		
+		/**
+		 * FILTRO PARA MOSTRAR TODOS LOS VEHICULOS
+		 */
 		if (marca.equals("Cualquiera") && ano.equals("")) {
 			limpiarTabla(tablaConsultas);
 
@@ -61,7 +78,9 @@ public class filtrar {
 			}
 		}
 
-		// MUESTRA TODOS LOS COCHES DE UNA MARCA
+		/**
+		 * FILTRO PARA MOSTRAR TODOS LOS VEHICULOS DE UNA MARCA
+		 */
 		if (!marca.equals("Cualquiera")) {
 			limpiarTabla(tablaConsultas);
 			// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR SEGUN LOS FILTROS INDICADOS
@@ -81,7 +100,9 @@ public class filtrar {
 				row++;
 			}
 		}
-		// MUESTRA EL MODELO ESPECIFICO DE UNA MARCA
+		/**
+		 * FILTRO PARA MOSTRAR EL MODELO ESPECIFICO DE UNA MARCA ESPECIFICA
+		 */
 		if (!marca.equals("Cualquiera") && !modelo.equals("Cualquiera")) {
 			limpiarTabla(tablaConsultas);
 			
@@ -104,7 +125,10 @@ public class filtrar {
 				row++;
 			}
 		}
-		// MUESTRA TODOS LOS COCHES DE UN AÑO ESPECIFICO
+		
+		/**
+		 * FILTRO PARA MOSTRAR TODOS LOS COCHES DE UN AÑO ESPECIFICO
+		 */
 		if (marca.equals("Cualquiera") && modelo.equals("Cualquiera") && !ano.equals("")) {
 			limpiarTabla(tablaConsultas);
 			// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR SEGUN LOS FILTROS INDICADOS
@@ -125,7 +149,10 @@ public class filtrar {
 				row++;
 			}
 		}
-		// MUESTRA TODOS LOS COCHES DE UNA MARCA EN UN AÑO ESPECIFICO
+		
+		/**
+		 * FILTRO PARA MOSTRAR LOS VEHICULOS DE UNA MARCA EN UN AÑO ESPECIFICO
+		 */
 		if (!marca.equals("Cualquiera") && !ano.equals("")) {
 			limpiarTabla(tablaConsultas);
 			// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR SEGUN LOS FILTROS INDICADOS
@@ -147,7 +174,9 @@ public class filtrar {
 				row++;
 			}
 		}
-		//MUESTRA LOS MODELOS DE UNA MARCA ESPECIFICA UN AÑO ESPECIFICO
+		/**
+		 * FILTRO PARA MOSTRAR LOS MODELOS DE UNA MARCAR EN UN AÑO ESPECIFICO
+		 */
 		if (!marca.equals("Cualquiera") && !modelo.equals("Cualquiera")&&!ano.equals("")) {
 			limpiarTabla(tablaConsultas);
 			// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR SEGUN LOS FILTROS INDICADOS
@@ -171,7 +200,10 @@ public class filtrar {
 			}
 		}
 	}
-
+	/**
+	 * METODO PARA LIMPIAR LA TABLA ANTES DE CADA CONSULTA
+	 * @param tablaConsultas
+	 */
 	public static void limpiarTabla(JTable tablaConsultas) {
 		Object titulos [] = {"Matricula", "Marca", "Modelo", "Año", "KM", "Precio"};
 		Object celdas [][] = new Object [50][6];

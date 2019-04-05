@@ -12,6 +12,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class anadir {
+	/**
+	 * CONEXION CON LA BASE DE DATOS
+	 * @return
+	 * @throws SQLException
+	 */
 	public static Connection conexionBBDD() throws SQLException {
 		// CONEXION CON LA BASE DE DATOS
 		String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
@@ -23,7 +28,16 @@ public class anadir {
 		Connection conexion = DriverManager.getConnection(url, user, password);
 		return conexion;
 	}
-
+	/**
+	 * METODO PARA AÑADIR UN COCHE
+	 * @param marcacomboBox
+	 * @param modelocomboBox
+	 * @param textAno
+	 * @param textKM
+	 * @param textPrecio
+	 * @param textMatricula
+	 * @throws SQLException
+	 */
 	public static void anadir(JComboBox marcacomboBox, JComboBox modelocomboBox, JTextField textAno, JTextField textKM,
 			JTextField textPrecio, JTextField textMatricula) throws SQLException {
 		String marca = marcacomboBox.getSelectedItem().toString();

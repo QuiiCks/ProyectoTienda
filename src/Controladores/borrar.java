@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 public class borrar {
 	/***
-	 * src/main/resources
+	 * CONEXION CON LA BASE DE DATOS
 	 * @return
 	 * @throws SQLException
 	 */
@@ -29,7 +29,7 @@ public class borrar {
 		return conexion;
 	}
 	/***
-	 * 
+	 * METODO PARA BORRAR UN COCHE
 	 * @param textMatricula
 	 * @throws SQLException
 	 */

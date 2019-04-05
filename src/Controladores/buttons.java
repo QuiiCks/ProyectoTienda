@@ -13,8 +13,10 @@ import javax.swing.JTextField;
 import login.Login;
 
 public class buttons {
-	/*
+	/**
 	 * CONEXION CON LA BASE DE DATOS
+	 * @return
+	 * @throws SQLException
 	 */
 	public static Connection conexionBBDD() throws SQLException {
 		// CONEXION CON LA BASE DE DATOS
@@ -27,7 +29,13 @@ public class buttons {
 		Connection conexion = DriverManager.getConnection(url, user, password);
 		return conexion;
 	}
-	
+	/**
+	 * METODO QUE CONTROLA EL BOTON DE LOGIN PARA ACCEDER A LA APLICACION
+	 * @param textUser
+	 * @param textPassword
+	 * @return
+	 * @throws SQLException
+	 */
 	public static boolean buttonLogin(JTextField textUser, JTextField textPassword) throws SQLException {
 
 		String usuario = textUser.getText();
@@ -59,6 +67,12 @@ public class buttons {
 		}
 		return false;
 	}
+	/**
+	 * METODO QUE CONTROLA EL BOTON REGISTER Y AÑADE UN USUARIO
+	 * @param textUser
+	 * @param textPassword
+	 * @throws SQLException
+	 */
 	public static void buttonRegister(JTextField textUser, JTextField textPassword) throws SQLException {
 		String usuario = textUser.getText();
 		String password = textPassword.getText();
