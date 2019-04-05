@@ -61,7 +61,7 @@ public class Login extends JFrame {
 		setBackground(Color.GRAY);
 		setBounds(100, 100, 400, 370);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(128, 0, 0));
+		contentPane.setBackground(new Color(0, 102, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -90,7 +90,7 @@ public class Login extends JFrame {
 		
 		JCheckBox checkRecuerdame = new JCheckBox("Recuerdame");
 		checkRecuerdame.setFont(new Font("Calibri", Font.BOLD, 15));
-		checkRecuerdame.setBackground(new Color(128, 0, 0));
+		checkRecuerdame.setBackground(new Color(0, 102, 204));
 		checkRecuerdame.setBounds(184, 152, 133, 23);
 		contentPane.add(checkRecuerdame);
 		
@@ -114,6 +114,16 @@ public class Login extends JFrame {
 								e.printStackTrace();
 							}
 							
+						}else {
+							FileWriter writer;
+							try {
+								writer = new FileWriter("src/login/recuerdame.txt");
+								writer.write("");
+								writer.close();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					}
 					
