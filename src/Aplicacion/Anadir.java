@@ -56,7 +56,7 @@ public class Anadir extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Anadir.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop - A\u00F1adir");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 519, 300);
+		setBounds(100, 100, 511, 267);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 102, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,65 +66,65 @@ public class Anadir extends JFrame {
 		JLabel lblAadirCoche = new JLabel("A\u00F1adir coche");
 		lblAadirCoche.setForeground(Color.WHITE);
 		lblAadirCoche.setFont(new Font("Lucida Handwriting", Font.BOLD, 22));
-		lblAadirCoche.setBounds(10, 11, 215, 49);
+		lblAadirCoche.setBounds(29, 0, 215, 49);
 		contentPane.add(lblAadirCoche);
 
 		JLabel lblMatricula = new JLabel("Matricula");
 		lblMatricula.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblMatricula.setBounds(10, 71, 78, 26);
+		lblMatricula.setBounds(20, 97, 78, 26);
 		contentPane.add(lblMatricula);
 
 		JLabel lblMarca = new JLabel("Marca");
 		lblMarca.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblMarca.setBounds(10, 128, 52, 26);
+		lblMarca.setBounds(20, 58, 52, 26);
 		contentPane.add(lblMarca);
 
 		JLabel lblModelo = new JLabel("Modelo");
 		lblModelo.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblModelo.setBounds(260, 128, 85, 26);
+		lblModelo.setBounds(238, 58, 85, 26);
 		contentPane.add(lblModelo);
 
 		JLabel lblAo = new JLabel("A\u00F1o");
 		lblAo.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblAo.setBounds(10, 179, 38, 26);
+		lblAo.setBounds(24, 134, 38, 26);
 		contentPane.add(lblAo);
 
 		JLabel lblKilometros = new JLabel("Kilometros");
 		lblKilometros.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblKilometros.setBounds(260, 179, 85, 26);
+		lblKilometros.setBounds(238, 97, 85, 26);
 		contentPane.add(lblKilometros);
 
 		JLabel lblPrecio = new JLabel("Precio");
 		lblPrecio.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblPrecio.setBounds(10, 216, 52, 26);
+		lblPrecio.setBounds(238, 134, 52, 26);
 		contentPane.add(lblPrecio);
 
 		textAno = new JTextField();
 		textAno.setFont(new Font("Calibri", Font.BOLD, 18));
 		textAno.setColumns(10);
-		textAno.setBounds(49, 179, 100, 26);
+		textAno.setBounds(104, 134, 100, 26);
 		contentPane.add(textAno);
 
 		textKM = new JTextField();
 		textKM.setFont(new Font("Calibri", Font.BOLD, 18));
 		textKM.setColumns(10);
-		textKM.setBounds(354, 179, 100, 26);
+		textKM.setBounds(333, 97, 100, 26);
 		contentPane.add(textKM);
 
 		textPrecio = new JTextField();
 		textPrecio.setFont(new Font("Calibri", Font.BOLD, 18));
 		textPrecio.setColumns(10);
-		textPrecio.setBounds(59, 216, 100, 26);
+		textPrecio.setBounds(333, 134, 100, 26);
 		contentPane.add(textPrecio);
 
 		JLabel label = new JLabel("\u20AC");
 		label.setFont(new Font("Calibri", Font.BOLD, 18));
-		label.setBounds(169, 216, 24, 26);
+		label.setBounds(443, 134, 24, 26);
 		contentPane.add(label);
 
 		JComboBox marcacomboBox = new JComboBox();
 		marcacomboBox.setFont(new Font("Calibri", Font.BOLD, 18));
-		marcacomboBox.setBounds(72, 124, 131, 30);
+		marcacomboBox.setBounds(104, 56, 100, 30);
 		contentPane.add(marcacomboBox);
 		marcacomboBox.addItem("");
 		marcacomboBox.addItem("Seat");
@@ -135,13 +135,13 @@ public class Anadir extends JFrame {
 
 		JComboBox modelocomboBox = new JComboBox();
 		modelocomboBox.setFont(new Font("Calibri", Font.BOLD, 18));
-		modelocomboBox.setBounds(332, 124, 131, 30);
+		modelocomboBox.setBounds(333, 56, 100, 30);
 		contentPane.add(modelocomboBox);
 		
 		textMatricula = new JTextField();
 		textMatricula.setFont(new Font("Calibri", Font.BOLD, 18));
 		textMatricula.setColumns(10);
-		textMatricula.setBounds(98, 71, 100, 26);
+		textMatricula.setBounds(104, 97, 100, 26);
 		contentPane.add(textMatricula);
 		
 		JButton btnAadir = new JButton("A\u00F1adir");
@@ -157,7 +157,7 @@ public class Anadir extends JFrame {
 		});
 		btnAadir.setFont(new Font("Calibri", Font.BOLD, 18));
 		btnAadir.setBackground(Color.LIGHT_GRAY);
-		btnAadir.setBounds(259, 28, 156, 36);
+		btnAadir.setBounds(10, 181, 156, 36);
 		contentPane.add(btnAadir);
 		
 		JButton button = new JButton("Volver al menu");
@@ -169,7 +169,7 @@ public class Anadir extends JFrame {
 		});
 		button.setFont(new Font("Calibri", Font.BOLD, 18));
 		button.setBackground(Color.LIGHT_GRAY);
-		button.setBounds(260, 74, 155, 36);
+		button.setBounds(182, 181, 155, 36);
 		contentPane.add(button);
 
 		// Listener para controlar ambos comboBox
