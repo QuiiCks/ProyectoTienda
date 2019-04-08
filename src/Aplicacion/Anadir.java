@@ -12,6 +12,8 @@ import Controladores.modeloCoche;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -148,10 +150,14 @@ public class Anadir extends JFrame {
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if(marcacomboBox.getSelectedItem().toString().equals("")) {
+						JOptionPane.showMessageDialog(null, "Por favor, rellena todos los campos");
+					}else {
 					anadir.anadir(marcacomboBox, modelocomboBox, textAno, textKM, textPrecio, textMatricula);
+					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Por favor, rellena todos los campos");
 				}
 			}
 		});

@@ -58,7 +58,7 @@ public class MenuTienda extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuTienda.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 488, 281);
+		setBounds(100, 100, 488, 336);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 102, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -106,7 +106,18 @@ public class MenuTienda extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(MenuTienda.class.getResource("/recursos/Logo.png")));
-		lblNewLabel.setBounds(221, 63, 229, 138);
+		lblNewLabel.setBounds(222, 79, 229, 138);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnModificarProducto = new JButton("Modificar Producto");
+		btnModificarProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				UpdateMatricula.main(null);
+				setVisible(false);
+			}
+		});
+		btnModificarProducto.setFont(new Font("Calibri", Font.BOLD, 19));
+		btnModificarProducto.setBounds(10, 228, 190, 50);
+		contentPane.add(btnModificarProducto);
 	}
 }
