@@ -82,6 +82,7 @@ public class UpdateMatricula extends JFrame {
 					
 					if(modificar.comprobarMatricula(textMatricula)) {
 						Modificar.main(null);
+						setVisible(false);
 					}else {
 						JOptionPane.showMessageDialog(null, "Matricula no encontrada en la base de datos", "Error matricula", 1);
 					}
@@ -104,5 +105,17 @@ public class UpdateMatricula extends JFrame {
 		btnContinuar.setBackground(Color.LIGHT_GRAY);
 		btnContinuar.setBounds(10, 108, 210, 36);
 		contentPane.add(btnContinuar);
+		
+		JButton button = new JButton("Volver al menu");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MenuTiendaAdmin.main(null);
+				setVisible(false);
+			}
+		});
+		button.setFont(new Font("Calibri", Font.BOLD, 18));
+		button.setBackground(Color.LIGHT_GRAY);
+		button.setBounds(230, 108, 155, 36);
+		contentPane.add(button);
 	}
 }

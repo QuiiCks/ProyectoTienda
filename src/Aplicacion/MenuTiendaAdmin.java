@@ -35,7 +35,7 @@ import javax.swing.ImageIcon;
  * @author Javi
  *
  */
-public class MenuTienda extends JFrame {
+public class MenuTiendaAdmin extends JFrame {
 
 	private JPanel contentPane;
 
@@ -46,7 +46,7 @@ public class MenuTienda extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuTienda frame = new MenuTienda();
+					MenuTiendaAdmin frame = new MenuTiendaAdmin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,9 +55,9 @@ public class MenuTienda extends JFrame {
 		});
 	}
 	
-	public MenuTienda() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuTienda.class.getResource("/recursos/Logo.png")));
-		setTitle("JaShop");
+	public MenuTiendaAdmin() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuTiendaAdmin.class.getResource("/recursos/Logo.png")));
+		setTitle("JaShop - Administrador");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 488, 336);
 		contentPane = new JPanel();
@@ -95,7 +95,6 @@ public class MenuTienda extends JFrame {
 		contentPane.add(btnAadirProductos);
 		
 		JButton btnBorrarProductos = new JButton("Borrar Productos");
-		btnBorrarProductos.setEnabled(false);
 		btnBorrarProductos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Borrar.main(null);
@@ -107,12 +106,11 @@ public class MenuTienda extends JFrame {
 		contentPane.add(btnBorrarProductos);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(MenuTienda.class.getResource("/recursos/Logo.png")));
+		lblNewLabel.setIcon(new ImageIcon(MenuTiendaAdmin.class.getResource("/recursos/Logo.png")));
 		lblNewLabel.setBounds(222, 79, 229, 138);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnModificarProducto = new JButton("Modificar Producto");
-		btnModificarProducto.setEnabled(false);
 		btnModificarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				UpdateMatricula.main(null);
@@ -123,15 +121,15 @@ public class MenuTienda extends JFrame {
 		btnModificarProducto.setBounds(10, 228, 190, 50);
 		contentPane.add(btnModificarProducto);
 		
-		JButton btnCerrarSesin = new JButton("Cerrar Sesi\u00F3n");
-		btnCerrarSesin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JButton button = new JButton("Cerrar Sesi\u00F3n");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				Login.main(null);
 				setVisible(false);
 			}
 		});
-		btnCerrarSesin.setFont(new Font("Calibri", Font.BOLD, 19));
-		btnCerrarSesin.setBounds(232, 228, 190, 50);
-		contentPane.add(btnCerrarSesin);
+		button.setFont(new Font("Calibri", Font.BOLD, 19));
+		button.setBounds(232, 228, 190, 50);
+		contentPane.add(button);
 	}
 }

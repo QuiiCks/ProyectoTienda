@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Aplicacion.MenuTienda;
+import Controladores.buttons;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -100,9 +101,12 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String usuario = textUser.getText();
 				String pass = textPassword.getText();
-				try {
-					if(Controladores.buttons.buttonLogin(textUser, textPassword)) {
-						MenuTienda.main(null);
+					try {
+						buttons.buttonLogin(textUser, textPassword);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 						setVisible(false);
 						if(checkRecuerdame.isSelected()) {
 							FileWriter writer;
@@ -126,11 +130,8 @@ public class Login extends JFrame {
 								e.printStackTrace();
 							}
 						}
-					}
 					
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+					
 			}
 		});
 		buttonLogin.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

@@ -172,7 +172,7 @@ public class Modificar extends JFrame {
 		JButton button_1 = new JButton("Volver al menu");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MenuTienda.main(null);
+				MenuTiendaAdmin.main(null);
 				setVisible(false);
 			}
 		});
@@ -211,7 +211,7 @@ public class Modificar extends JFrame {
 						JOptionPane.showMessageDialog(null, "Por favor, rellene todos los datos", "Error", 1);
 					}else {
 					modificar.actualizar(textMatricula, marcacomboBox, modelocomboBox, textAno, textKilometros, textPrecio);
-					MenuTienda.main(null);
+					MenuTiendaAdmin.main(null);
 					}
 					setVisible(false);
 				} catch (SQLException e) {

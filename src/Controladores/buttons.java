@@ -10,6 +10,8 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import Aplicacion.MenuTienda;
+import Aplicacion.MenuTiendaAdmin;
 import login.Login;
 
 public class buttons {
@@ -36,7 +38,7 @@ public class buttons {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static boolean buttonLogin(JTextField textUser, JTextField textPassword) throws SQLException {
+	public static void buttonLogin(JTextField textUser, JTextField textPassword) throws SQLException {
 
 		String usuario = textUser.getText();
 		String pass = textPassword.getText();
@@ -54,9 +56,14 @@ public class buttons {
 
 				// VERIFICACION DE CONTRASEÑA UNA VEZ EL USUARIO ES CORRECTO
 				if (resultado.getString("password").equals(pass)) {
-					// ACCESO AL PROGRAMA
-					JOptionPane.showMessageDialog(null, " Logeado correctamente!");
-					return true;
+					if(resultado.getString("rol").equals("Admin")) {
+						JOptionPane.showMessageDialog(null, " Logeado correctamente con rol de Administrador");
+						MenuTiendaAdmin.main(null);
+					}else {
+						JOptionPane.showMessageDialog(null, " Logeado correctamente");
+						MenuTienda.main(null);
+					}
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
 				}
@@ -65,7 +72,6 @@ public class buttons {
 		} else {
 			JOptionPane.showMessageDialog(null, "Usuario incorrecto");
 		}
-		return false;
 	}
 	/**
 	 * METODO QUE CONTROLA EL BOTON REGISTER Y AÑADE UN USUARIO

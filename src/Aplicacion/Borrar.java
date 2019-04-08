@@ -97,7 +97,7 @@ public class Borrar extends JFrame {
 		JButton button = new JButton("Volver al menu");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuTienda.main(null);
+				MenuTiendaAdmin.main(null);
 				setVisible(false);
 			}
 		});
