@@ -107,7 +107,7 @@ public class MenuTiendaAdmin extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(MenuTiendaAdmin.class.getResource("/recursos/Logo.png")));
-		lblNewLabel.setBounds(222, 79, 229, 138);
+		lblNewLabel.setBounds(222, 95, 229, 131);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnModificarProducto = new JButton("Modificar Producto");
@@ -129,7 +129,18 @@ public class MenuTiendaAdmin extends JFrame {
 			}
 		});
 		button.setFont(new Font("Calibri", Font.BOLD, 19));
-		button.setBounds(232, 228, 190, 50);
+		button.setBounds(232, 228, 205, 50);
 		contentPane.add(button);
+		
+		JButton btnAadirAdministrador = new JButton("Gestionar usuarios");
+		btnAadirAdministrador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gestionUsuarios.main(null);
+				setVisible(false);
+			}
+		});
+		btnAadirAdministrador.setFont(new Font("Calibri", Font.BOLD, 19));
+		btnAadirAdministrador.setBounds(232, 46, 205, 50);
+		contentPane.add(btnAadirAdministrador);
 	}
 }
