@@ -90,7 +90,7 @@ public class Register extends JFrame {
 					Login.main(null);
 					setVisible(false);
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null,"El usuario insertado ya existe en la base de datos");
+					e1.printStackTrace();
 					Login.main(null);
 					setVisible(false);
 				}

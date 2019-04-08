@@ -83,11 +83,12 @@ public class buttons {
 		String usuario = textUser.getText();
 		String password = textPassword.getText();
 
-
-		String instruccionSql = "INSERT INTO users values('" + usuario + "', '" + password + "')";
-
 		Statement consulta = conexionBBDD().createStatement();
-		consulta.executeUpdate(instruccionSql);
+		int resultado;
+		PreparedStatement consultaprep = conexionBBDD().prepareStatement("INSERT INTO Users (user,password,rol) VALUES (?, ?, '')");
+		consultaprep.setString(1, usuario);
+		consultaprep.setString(2, password);
+		resultado = consultaprep.executeUpdate();
 		JOptionPane.showMessageDialog(null, "Se ha añadido el usuario " + usuario + " con contraseña " + password + " en la base de datos.");
 		
 	}

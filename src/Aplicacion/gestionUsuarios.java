@@ -96,8 +96,8 @@ public class gestionUsuarios extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					usuarios.actualizarUsuarios(usuarioscomboBox, rolcomboBox);
-					MenuTiendaAdmin.main(null);
 					setVisible(false);
+					gestionUsuarios.main(null);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Complete los campos");
@@ -125,9 +125,9 @@ public class gestionUsuarios extends JFrame {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					usuarios.eliminarUsuario(usuarioscomboBox, rolcomboBox);
-					MenuTiendaAdmin.main(null);
 					setVisible(false);
+					usuarios.eliminarUsuario(usuarioscomboBox, rolcomboBox);
+					gestionUsuarios.main(null);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
