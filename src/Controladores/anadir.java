@@ -47,10 +47,10 @@ public class anadir {
 		String precio = textPrecio.getText();
 		String matricula = textMatricula.getText();
 
-		Statement consulta = conexionBBDD().createStatement();
+		Statement consulta = conexionBBDDExterna.conexionBBDD().createStatement();
 		int resultado;
 
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement("INSERT INTO coches VALUES (?,?,?,?,?,?)");
+		PreparedStatement consultaprep = conexionBBDDExterna.conexionBBDD().prepareStatement("INSERT INTO coches VALUES (?,?,?,?,?,?)");
 		consultaprep.setString(1, matricula);
 		consultaprep.setString(2, marca);
 		consultaprep.setString(3, modelo);

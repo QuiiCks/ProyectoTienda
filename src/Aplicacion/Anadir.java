@@ -55,6 +55,7 @@ public class Anadir extends JFrame {
 	 * Create the frame.
 	 */
 	public Anadir() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Anadir.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop - A\u00F1adir");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -134,6 +135,16 @@ public class Anadir extends JFrame {
 		marcacomboBox.addItem("Ford");
 		marcacomboBox.addItem("Renault");
 		marcacomboBox.addItem("Chevrolet");
+		marcacomboBox.addItem("Audi");
+		marcacomboBox.addItem("BMW");
+		marcacomboBox.addItem("Kia");
+		marcacomboBox.addItem("Lexus");
+		marcacomboBox.addItem("Mazda");
+		marcacomboBox.addItem("Mercedes");
+		marcacomboBox.addItem("Peugeot");
+		marcacomboBox.addItem("Toyota");
+		marcacomboBox.addItem("Volkswagen");
+		marcacomboBox.addItem("Volvo");
 
 		JComboBox modelocomboBox = new JComboBox();
 		modelocomboBox.setFont(new Font("Calibri", Font.BOLD, 18));

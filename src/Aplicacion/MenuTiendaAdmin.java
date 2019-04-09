@@ -56,6 +56,7 @@ public class MenuTiendaAdmin extends JFrame {
 	}
 	
 	public MenuTiendaAdmin() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuTiendaAdmin.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop - Administrador");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

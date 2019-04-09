@@ -56,12 +56,13 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/recursos/Logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setFont(new Font("Calibri", Font.BOLD, 18));
 		setTitle("Login");
 		setBackground(Color.GRAY);
-		setBounds(100, 100, 400, 370);
+		setBounds(100, 100, 384, 333);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 102, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

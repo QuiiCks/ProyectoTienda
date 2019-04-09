@@ -25,9 +25,9 @@ public class usuarios {
 
 	public static void obtenerUsuarios(JComboBox usuarios) throws SQLException {
 
-		Statement consulta = conexionBBDD().createStatement();
+		Statement consulta = conexionBBDDExterna.conexionBBDD().createStatement();
 		ResultSet resultado;
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement("SELECT user FROM users");
+		PreparedStatement consultaprep = conexionBBDDExterna.conexionBBDD().prepareStatement("SELECT user FROM users");
 		resultado = consultaprep.executeQuery();
 		while (resultado.next()) {
 			usuarios.addItem(resultado.getObject(1));
@@ -38,10 +38,10 @@ public class usuarios {
 		String usuario = usuarioscomboBox.getSelectedItem().toString();
 		String rol = rolcomboBox.getSelectedItem().toString();
 
-		Statement consulta = conexionBBDD().createStatement();
+		Statement consulta = conexionBBDDExterna.conexionBBDD().createStatement();
 		int resultado;
 		
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement(
+		PreparedStatement consultaprep = conexionBBDDExterna.conexionBBDD().prepareStatement(
 				"UPDATE Users SET Rol = ? WHERE User = ?");
 		consultaprep.setString(1, rol);
 		consultaprep.setString(2, usuario);
@@ -52,10 +52,10 @@ public class usuarios {
 		String usuario = usuarioscomboBox.getSelectedItem().toString();
 		String rol = rolcomboBox.getSelectedItem().toString();
 
-		Statement consulta = conexionBBDD().createStatement();
+		Statement consulta = conexionBBDDExterna.conexionBBDD().createStatement();
 		int resultado;
 		
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement(
+		PreparedStatement consultaprep = conexionBBDDExterna.conexionBBDD().prepareStatement(
 				"DELETE FROM Users WHERE User = ?");
 		consultaprep.setString(1, usuario);
 		resultado = consultaprep.executeUpdate();

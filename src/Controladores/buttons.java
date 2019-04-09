@@ -43,10 +43,10 @@ public class buttons {
 		String usuario = textUser.getText();
 		String pass = textPassword.getText();
 
-		Statement consulta = conexionBBDD().createStatement();
+		Statement consulta = conexionBBDDExterna.conexionBBDD().createStatement();
 		ResultSet resultado;
 		// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR EL USUARIO ESPECIFICO
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement("SELECT * FROM users WHERE user = ?");
+		PreparedStatement consultaprep = conexionBBDDExterna.conexionBBDD().prepareStatement("SELECT * FROM users WHERE user = ?");
 		consultaprep.setString(1, usuario);
 		resultado = consultaprep.executeQuery();
 
@@ -83,9 +83,9 @@ public class buttons {
 		String usuario = textUser.getText();
 		String password = textPassword.getText();
 
-		Statement consulta = conexionBBDD().createStatement();
+		Statement consulta = conexionBBDDExterna.conexionBBDD().createStatement();
 		int resultado;
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement("INSERT INTO Users (user,password,rol) VALUES (?, ?, '')");
+		PreparedStatement consultaprep = conexionBBDDExterna.conexionBBDD().prepareStatement("INSERT INTO users (user,password,rol) VALUES (?, ?, '')");
 		consultaprep.setString(1, usuario);
 		consultaprep.setString(2, password);
 		resultado = consultaprep.executeUpdate();
