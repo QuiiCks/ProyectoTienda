@@ -47,6 +47,7 @@ public class gestionUsuarios extends JFrame {
 	 * Create the frame.
 	 */
 	public gestionUsuarios() {
+		setResizable(false);
 		setTitle("Gestion usuarios");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(gestionUsuarios.class.getResource("/recursos/Logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

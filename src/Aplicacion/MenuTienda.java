@@ -56,6 +56,7 @@ public class MenuTienda extends JFrame {
 	}
 	
 	public MenuTienda() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuTienda.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

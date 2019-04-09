@@ -59,6 +59,7 @@ public class Modificar extends JFrame {
 	 * Create the frame.
 	 */
 	public Modificar() {
+		setResizable(false);
 		setTitle("JaShop - Modificar Producto");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Modificar.class.getResource("/recursos/Logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

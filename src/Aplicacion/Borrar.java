@@ -47,6 +47,7 @@ public class Borrar extends JFrame {
 	 * Create the frame.
 	 */
 	public Borrar() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Borrar.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop - Borrar");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

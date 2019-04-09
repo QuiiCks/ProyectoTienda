@@ -58,6 +58,7 @@ public class Listar extends JFrame {
 	 * Create the frame.
 	 */
 	public Listar() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Listar.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop - Listar");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

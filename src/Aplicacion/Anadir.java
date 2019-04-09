@@ -55,6 +55,7 @@ public class Anadir extends JFrame {
 	 * Create the frame.
 	 */
 	public Anadir() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Anadir.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop - A\u00F1adir");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

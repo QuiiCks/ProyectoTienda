@@ -48,6 +48,7 @@ public class UpdateMatricula extends JFrame {
 	 * Create the frame.
 	 */
 	public UpdateMatricula() {
+		setResizable(false);
 		setTitle("JaShop - Matricula");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(UpdateMatricula.class.getResource("/recursos/Logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
