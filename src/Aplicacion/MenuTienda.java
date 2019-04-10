@@ -60,7 +60,7 @@ public class MenuTienda extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuTienda.class.getResource("/recursos/Logo.png")));
 		setTitle("JaShop");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 488, 336);
+		setBounds(100, 100, 488, 395);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 102, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -104,12 +104,12 @@ public class MenuTienda extends JFrame {
 			}
 		});
 		btnBorrarProductos.setFont(new Font("Calibri", Font.BOLD, 19));
-		btnBorrarProductos.setBounds(10, 167, 190, 50);
+		btnBorrarProductos.setBounds(10, 229, 190, 50);
 		contentPane.add(btnBorrarProductos);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(MenuTienda.class.getResource("/recursos/Logo.png")));
-		lblNewLabel.setBounds(222, 79, 229, 138);
+		lblNewLabel.setBounds(221, 46, 229, 138);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnModificarProducto = new JButton("Modificar Producto");
@@ -121,7 +121,7 @@ public class MenuTienda extends JFrame {
 			}
 		});
 		btnModificarProducto.setFont(new Font("Calibri", Font.BOLD, 19));
-		btnModificarProducto.setBounds(10, 228, 190, 50);
+		btnModificarProducto.setBounds(10, 290, 190, 50);
 		contentPane.add(btnModificarProducto);
 		
 		JButton btnCerrarSesin = new JButton("Cerrar Sesi\u00F3n");
@@ -132,7 +132,12 @@ public class MenuTienda extends JFrame {
 			}
 		});
 		btnCerrarSesin.setFont(new Font("Calibri", Font.BOLD, 19));
-		btnCerrarSesin.setBounds(232, 228, 190, 50);
+		btnCerrarSesin.setBounds(221, 290, 190, 50);
 		contentPane.add(btnCerrarSesin);
+		
+		JButton btnMiembrosDelSeguro = new JButton("Seguro");
+		btnMiembrosDelSeguro.setFont(new Font("Calibri", Font.BOLD, 19));
+		btnMiembrosDelSeguro.setBounds(10, 168, 190, 50);
+		contentPane.add(btnMiembrosDelSeguro);
 	}
 }

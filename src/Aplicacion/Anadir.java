@@ -168,7 +168,7 @@ public class Anadir extends JFrame {
 					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "Por favor, rellena todos los campos");
+					e1.printStackTrace();
 				}
 			}
 		});
