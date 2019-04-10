@@ -55,10 +55,10 @@ public class modificar {
 		String kilometros = textKM.getText();
 		String precio = textPrecio.getText();
 
-		Statement consulta = conexionBBDDExterna.conexionBBDD().createStatement();
+		Statement consulta = conexionBBDD().createStatement();
 		int resultado;
 
-		PreparedStatement consultaprep = conexionBBDDExterna.conexionBBDD().prepareStatement(
+		PreparedStatement consultaprep = conexionBBDD().prepareStatement(
 				"UPDATE Coches SET Matricula = ?, Marca = ?, Modelo = ?, Ano = ?, Precio = ?, KM = ? WHERE Matricula = ?");
 		consultaprep.setString(1, matricula);
 		consultaprep.setString(2, marca);
@@ -86,10 +86,10 @@ public class modificar {
 
 		String matricula = textMatricula.getText();
 
-		Statement consulta = conexionBBDDExterna.conexionBBDD().createStatement();
+		Statement consulta = conexionBBDD().createStatement();
 		ResultSet resultado;
 
-		PreparedStatement consultaprep = conexionBBDDExterna.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
+		PreparedStatement consultaprep = conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
 		consultaprep.setString(1, matricula);
 		resultado = consultaprep.executeQuery();
 		if (resultado.next()) {
@@ -131,10 +131,10 @@ public class modificar {
 	public static boolean comprobarMatricula(JTextField textMatricula) throws SQLException {
 		String matricula = textMatricula.getText();
 
-		Statement consulta = conexionBBDDExterna.conexionBBDD().createStatement();
+		Statement consulta = conexionBBDD().createStatement();
 		ResultSet resultado;
 
-		PreparedStatement consultaprep = conexionBBDDExterna.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
+		PreparedStatement consultaprep = conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
 		consultaprep.setString(1, matricula);
 		resultado = consultaprep.executeQuery();
 		if (resultado.next()) {
