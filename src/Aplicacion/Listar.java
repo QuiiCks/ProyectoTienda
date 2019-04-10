@@ -96,6 +96,16 @@ public class Listar extends JFrame {
 		marcacomboBox.addItem("Ford");
 		marcacomboBox.addItem("Renault");
 		marcacomboBox.addItem("Chevrolet");
+		marcacomboBox.addItem("Audi");
+		marcacomboBox.addItem("BMW");
+		marcacomboBox.addItem("Kia");
+		marcacomboBox.addItem("Lexus");
+		marcacomboBox.addItem("Mazda");
+		marcacomboBox.addItem("Mercedes");
+		marcacomboBox.addItem("Peugeot");
+		marcacomboBox.addItem("Toyota");
+		marcacomboBox.addItem("Volkswagen");
+		marcacomboBox.addItem("Volvo");
 
 		JComboBox modelocomboBox = new JComboBox();
 		modelocomboBox.setModel(new DefaultComboBoxModel(new String[] {"Cualquiera"}));

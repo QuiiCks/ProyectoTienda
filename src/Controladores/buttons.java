@@ -85,7 +85,7 @@ public class buttons {
 
 		Statement consulta = conexionBBDD().createStatement();
 		int resultado;
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement("INSERT INTO Users (user,password,rol) VALUES (?, ?, '')");
+		PreparedStatement consultaprep = conexionBBDD().prepareStatement("INSERT INTO users (user,password,rol) VALUES (?, ?, '')");
 		consultaprep.setString(1, usuario);
 		consultaprep.setString(2, password);
 		resultado = consultaprep.executeUpdate();

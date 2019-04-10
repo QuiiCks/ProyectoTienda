@@ -62,7 +62,7 @@ public class Login extends JFrame {
 		setFont(new Font("Calibri", Font.BOLD, 18));
 		setTitle("Login");
 		setBackground(Color.GRAY);
-		setBounds(100, 100, 400, 370);
+		setBounds(100, 100, 384, 333);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 102, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
