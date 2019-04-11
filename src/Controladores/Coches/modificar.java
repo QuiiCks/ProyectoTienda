@@ -1,4 +1,4 @@
-package Controladores;
+package Controladores.Coches;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,27 +13,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import Aplicacion.Modificar;
-import Aplicacion.UpdateMatricula;
+import Aplicacion.GestionCoches.Modificar;
+import Aplicacion.GestionCoches.UpdateMatricula;
+import Controladores.conexion;
 
 public class modificar {
-	/**
-	 * CONEXION CON LA BASE DE DATOS
-	 * 
-	 * @return
-	 * @throws SQLException
-	 */
-	public static Connection conexionBBDD() throws SQLException {
-		// CONEXION CON LA BASE DE DATOS
-		String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-		String dbName = "ProyectoTienda";
-		String url = "jdbc:mysql://localhost:3306/" + dbName + timeZone;
-		String user = "root";
-		String password = "manolo";
-
-		Connection conexion = DriverManager.getConnection(url, user, password);
-		return conexion;
-	}
+	
 
 	/**
 	 * 
@@ -55,10 +40,10 @@ public class modificar {
 		String kilometros = textKM.getText();
 		String precio = textPrecio.getText();
 
-		Statement consulta = conexionBBDD().createStatement();
+		Statement consulta = conexion.conexionBBDD().createStatement();
 		int resultado;
 
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement(
+		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement(
 				"UPDATE Coches SET Matricula = ?, Marca = ?, Modelo = ?, Ano = ?, Precio = ?, KM = ? WHERE Matricula = ?");
 		consultaprep.setString(1, matricula);
 		consultaprep.setString(2, marca);
@@ -86,10 +71,10 @@ public class modificar {
 
 		String matricula = textMatricula.getText();
 
-		Statement consulta = conexionBBDD().createStatement();
+		Statement consulta = conexion.conexionBBDD().createStatement();
 		ResultSet resultado;
 
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
+		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
 		consultaprep.setString(1, matricula);
 		resultado = consultaprep.executeQuery();
 		if (resultado.next()) {
@@ -131,10 +116,10 @@ public class modificar {
 	public static boolean comprobarMatricula(JTextField textMatricula) throws SQLException {
 		String matricula = textMatricula.getText();
 
-		Statement consulta = conexionBBDD().createStatement();
+		Statement consulta = conexion.conexionBBDD().createStatement();
 		ResultSet resultado;
 
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
+		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
 		consultaprep.setString(1, matricula);
 		resultado = consultaprep.executeQuery();
 		if (resultado.next()) {

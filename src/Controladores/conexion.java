@@ -5,6 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class conexion {
+	/**
+	 * METODO PARA CONECTAR CON LA BASE DE DATOS
+	 * @return
+	 * @throws SQLException
+	 */
 	public static Connection conexionBBDD() throws SQLException {
 		// CONEXION CON LA BASE DE DATOS
 		String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";

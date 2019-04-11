@@ -1,4 +1,4 @@
-package Aplicacion;
+package Aplicacion.GestionCoches;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -8,8 +8,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import Controladores.filtrar;
-import Controladores.modeloCoche;
+import Aplicacion.MenuTiendaAdmin;
+import Controladores.Coches.filtrar;
+import Controladores.Coches.modeloCoche;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -193,7 +194,7 @@ public class Listar extends JFrame {
 		JButton buttonMenu = new JButton("Volver al menu");
 		buttonMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MenuTienda.main(null);
+				MenuTiendaAdmin.main(null);
 				setVisible(false);
 			}
 		});

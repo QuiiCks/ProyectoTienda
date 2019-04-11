@@ -1,4 +1,4 @@
-package Aplicacion;
+package Aplicacion.GestionCoches;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,8 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controladores.anadir;
-import Controladores.modeloCoche;
+import Aplicacion.MenuTiendaAdmin;
+import Controladores.Coches.anadir;
+import Controladores.Coches.modeloCoche;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -180,7 +181,7 @@ public class Anadir extends JFrame {
 		JButton button = new JButton("Volver al menu");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MenuTienda.main(null);
+				MenuTiendaAdmin.main(null);
 				setVisible(false);
 			}
 		});

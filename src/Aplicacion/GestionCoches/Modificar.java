@@ -1,4 +1,4 @@
-package Aplicacion;
+package Aplicacion.GestionCoches;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,8 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controladores.modeloCoche;
-import Controladores.modificar;
+import Aplicacion.MenuTiendaAdmin;
+import Controladores.Coches.modeloCoche;
+import Controladores.Coches.modificar;
 
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -87,11 +88,22 @@ public class Modificar extends JFrame {
 		marcacomboBox.setBounds(65, 57, 100, 30);
 		contentPane.add(marcacomboBox);
 		
+		marcacomboBox.addItem("Cualquiera");
 		marcacomboBox.addItem("Seat");
 		marcacomboBox.addItem("Opel");
 		marcacomboBox.addItem("Ford");
 		marcacomboBox.addItem("Renault");
 		marcacomboBox.addItem("Chevrolet");
+		marcacomboBox.addItem("Audi");
+		marcacomboBox.addItem("BMW");
+		marcacomboBox.addItem("Kia");
+		marcacomboBox.addItem("Lexus");
+		marcacomboBox.addItem("Mazda");
+		marcacomboBox.addItem("Mercedes");
+		marcacomboBox.addItem("Peugeot");
+		marcacomboBox.addItem("Toyota");
+		marcacomboBox.addItem("Volkswagen");
+		marcacomboBox.addItem("Volvo");
 		
 		JLabel label_2 = new JLabel("Modelo");
 		label_2.setFont(new Font("Calibri", Font.BOLD, 18));

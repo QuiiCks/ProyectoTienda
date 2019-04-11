@@ -1,4 +1,4 @@
-package Aplicacion;
+package Aplicacion.Seguro.GestionSeguro;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controladores.listar_seguro;
+import Aplicacion.Seguro.Seguro;
+import Controladores.Seguro.listar_seguro;
 
 import java.awt.Toolkit;
 import java.awt.Color;

@@ -1,4 +1,4 @@
-package Controladores;
+package Controladores.Coches;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,23 +11,10 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class anadir {
-	/**
-	 * CONEXION CON LA BASE DE DATOS
-	 * @return
-	 * @throws SQLException
-	 */
-	public static Connection conexionBBDD() throws SQLException {
-		// CONEXION CON LA BASE DE DATOS
-		String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-		String dbName = "ProyectoTienda";
-		String url = "jdbc:mysql://localhost:3306/" + dbName + timeZone;
-		String user = "root";
-		String password = "manolo";
+import Controladores.conexion;
 
-		Connection conexion = DriverManager.getConnection(url, user, password);
-		return conexion;
-	}
+public class anadir {
+
 	/**
 	 * METODO PARA AÑADIR UN COCHE
 	 * @param marcacomboBox
@@ -47,10 +34,10 @@ public class anadir {
 		String precio = textPrecio.getText();
 		String matricula = textMatricula.getText();
 
-		Statement consulta = conexionBBDD().createStatement();
+		Statement consulta = conexion.conexionBBDD().createStatement();
 		int resultado;
 
-		PreparedStatement consultaprep = conexionBBDD().prepareStatement("INSERT INTO coches(Matricula, Marca, Modelo, Ano, Precio, KM) VALUES (?,?,?,?,?,?)");
+		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement("INSERT INTO coches(Matricula, Marca, Modelo, Ano, Precio, KM) VALUES (?,?,?,?,?,?)");
 		consultaprep.setString(1, matricula);
 		consultaprep.setString(2, marca);
 		consultaprep.setString(3, modelo);

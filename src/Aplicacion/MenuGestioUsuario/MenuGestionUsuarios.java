@@ -1,4 +1,4 @@
-package Aplicacion;
+package Aplicacion.MenuGestioUsuario;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controladores.usuarios;
+import Aplicacion.MenuTiendaAdmin;
+import Controladores.Login.usuarios;
 import login.Register;
 
 import java.awt.Color;
@@ -23,7 +24,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class gestionUsuarios extends JFrame {
+public class MenuGestionUsuarios extends JFrame {
 
 	private JPanel contentPane;
 
@@ -34,7 +35,7 @@ public class gestionUsuarios extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					gestionUsuarios frame = new gestionUsuarios();
+					MenuGestionUsuarios frame = new MenuGestionUsuarios();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,10 +47,10 @@ public class gestionUsuarios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public gestionUsuarios() {
+	public MenuGestionUsuarios() {
 		setResizable(false);
 		setTitle("Gestion usuarios");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(gestionUsuarios.class.getResource("/recursos/Logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuGestionUsuarios.class.getResource("/recursos/Logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 344, 372);
 		contentPane = new JPanel();
@@ -98,7 +99,7 @@ public class gestionUsuarios extends JFrame {
 				try {
 					usuarios.actualizarUsuarios(usuarioscomboBox, rolcomboBox);
 					setVisible(false);
-					gestionUsuarios.main(null);
+					MenuGestionUsuarios.main(null);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Complete los campos");
@@ -128,7 +129,7 @@ public class gestionUsuarios extends JFrame {
 				try {
 					setVisible(false);
 					usuarios.eliminarUsuario(usuarioscomboBox, rolcomboBox);
-					gestionUsuarios.main(null);
+					MenuGestionUsuarios.main(null);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

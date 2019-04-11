@@ -1,4 +1,4 @@
-package Aplicacion;
+package Aplicacion.GestionCoches;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,23 +7,23 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controladores.modificar;
+import Aplicacion.MenuTiendaAdmin;
+import Controladores.Coches.borrar;
+import Controladores.Coches.modificar;
 
-import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
-public class UpdateMatricula extends JFrame {
+public class Borrar extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textMatricula;
@@ -35,7 +35,7 @@ public class UpdateMatricula extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UpdateMatricula frame = new UpdateMatricula();
+					Borrar frame = new Borrar();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,43 +47,41 @@ public class UpdateMatricula extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UpdateMatricula() {
+	public Borrar() {
 		setResizable(false);
-		setTitle("JaShop - Matricula");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(UpdateMatricula.class.getResource("/recursos/Logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Borrar.class.getResource("/recursos/Logo.png")));
+		setTitle("JaShop - Borrar");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 417, 192);
+		setBounds(100, 100, 306, 256);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 102, 204));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblModificarProductos = new JLabel("Modificar productos");
-		lblModificarProductos.setForeground(Color.WHITE);
-		lblModificarProductos.setFont(new Font("Lucida Handwriting", Font.BOLD, 22));
-		lblModificarProductos.setBounds(10, 0, 276, 49);
-		contentPane.add(lblModificarProductos);
+		JLabel lblBorrar = new JLabel("Borrar");
+		lblBorrar.setForeground(Color.WHITE);
+		lblBorrar.setFont(new Font("Lucida Handwriting", Font.BOLD, 22));
+		lblBorrar.setBounds(10, 0, 156, 49);
+		contentPane.add(lblBorrar);
 		
-		JLabel lblInsertaLaMatricula = new JLabel("Inserta la matricula a modificar");
+		JLabel lblInsertaLaMatricula = new JLabel("Inserta la matricula a borrar");
 		lblInsertaLaMatricula.setFont(new Font("Calibri", Font.BOLD, 18));
-		lblInsertaLaMatricula.setBounds(10, 48, 245, 26);
+		lblInsertaLaMatricula.setBounds(10, 51, 235, 26);
 		contentPane.add(lblInsertaLaMatricula);
 		
 		textMatricula = new JTextField();
 		textMatricula.setFont(new Font("Calibri", Font.BOLD, 18));
 		textMatricula.setColumns(10);
-		textMatricula.setBounds(10, 74, 156, 26);
+		textMatricula.setBounds(10, 81, 156, 26);
 		contentPane.add(textMatricula);
 		
-		JButton btnContinuar = new JButton("Continuar");
-		btnContinuar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
-					
 					if(modificar.comprobarMatricula(textMatricula)) {
-						Modificar.main(null);
-						setVisible(false);
+					borrar.borrar(textMatricula);
 					}else {
 						JOptionPane.showMessageDialog(null, "Matricula no encontrada en la base de datos", "Error matricula", 1);
 					}
@@ -91,21 +89,12 @@ public class UpdateMatricula extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-					FileWriter writer;
-					try {
-						writer = new FileWriter("src/controladores/matricula.txt");
-						writer.write(textMatricula.getText());
-						writer.close();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			
-			}});
-		btnContinuar.setFont(new Font("Calibri", Font.BOLD, 18));
-		btnContinuar.setBackground(Color.LIGHT_GRAY);
-		btnContinuar.setBounds(10, 108, 210, 36);
-		contentPane.add(btnContinuar);
+			}
+		});
+		btnBorrar.setFont(new Font("Calibri", Font.BOLD, 18));
+		btnBorrar.setBackground(Color.LIGHT_GRAY);
+		btnBorrar.setBounds(10, 118, 210, 36);
+		contentPane.add(btnBorrar);
 		
 		JButton button = new JButton("Volver al menu");
 		button.addActionListener(new ActionListener() {
@@ -116,7 +105,7 @@ public class UpdateMatricula extends JFrame {
 		});
 		button.setFont(new Font("Calibri", Font.BOLD, 18));
 		button.setBackground(Color.LIGHT_GRAY);
-		button.setBounds(230, 108, 155, 36);
+		button.setBounds(10, 165, 210, 36);
 		contentPane.add(button);
 	}
 }

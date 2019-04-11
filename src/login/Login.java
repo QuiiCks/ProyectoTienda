@@ -1,14 +1,13 @@
 package login;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Aplicacion.MenuTienda;
-import Controladores.buttons;
+import Aplicacion.MenuTiendaAdmin;
+import Controladores.Login.buttons;
 
 import java.awt.Color;
 import javax.swing.JLabel;
