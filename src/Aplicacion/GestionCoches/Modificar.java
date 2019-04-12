@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Aplicacion.MenuTiendaAdmin;
+import Controladores.Coches.anadir;
 import Controladores.Coches.modeloCoche;
 import Controladores.Coches.modificar;
 
@@ -19,6 +20,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -220,13 +223,56 @@ public class Modificar extends JFrame {
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					String nombre = textKilometros.getText();
+					String ano = textAno.getText();
+					String precio = textPrecio.getText();
+					String matricula = textMatricula.getText();
+
+					Pattern pat = Pattern.compile("^([0-9]){0,10}$");
+					Matcher mat = pat.matcher(nombre);
+
+					Pattern patano = Pattern.compile("^([0-9]){0,4}$");
+					Matcher matano = patano.matcher(ano);
+
+					Pattern patprecio = Pattern.compile("^([0-9]){0,10}$");
+					Matcher matprecio = patprecio.matcher(precio);
+
+					Pattern patmatricula = Pattern.compile("([0-9]{4})([A-Z]{3})");
+					Matcher matmatricula = patmatricula.matcher(matricula);
 					if(modelocomboBox.getSelectedItem().toString().equals(null)) {
 						JOptionPane.showMessageDialog(null, "Por favor, rellene todos los datos", "Error", 1);
 					}else {
-					modificar.actualizar(textMatricula, marcacomboBox, modelocomboBox, textAno, textKilometros, textPrecio);
-					MenuTiendaAdmin.main(null);
+						if(marcacomboBox.getSelectedItem().toString().equals("")
+							|| modelocomboBox.getSelectedItem().toString().equals("")
+							|| textMatricula.getText().equals("") || textKilometros.getText().equals("")
+							|| textPrecio.getText().equals("") || textAno.equals("")) {
+							JOptionPane.showMessageDialog(null, "Por favor, rellena todos los campos");
+						}else {
+							if (mat.find()) {
+								if (matano.find()) {
+									if (matprecio.find()) {
+										if (matmatricula.find()) {
+											modificar.actualizar(textMatricula, marcacomboBox, modelocomboBox, textAno, textKilometros, textPrecio);
+										} else {
+											JOptionPane.showMessageDialog(null,
+													"El campo matricula tiene que contener el formato europeo.\nFormato europeo: 1234ABC");
+										}
+
+									} else {
+										JOptionPane.showMessageDialog(null, "El campo precio solo puede contener numeros.");
+									}
+								} else {
+									JOptionPane.showMessageDialog(null,
+											"El campo año tiene que estar compuesto por un maximo de 4 numeros");
+								}
+
+							} else {
+								JOptionPane.showMessageDialog(null,
+										"Los campos de kilometros solo pueden contener numeros");
+							}
+						}
+					
 					}
-					setVisible(false);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Por favor, rellene todos los datos", "Error", 1);

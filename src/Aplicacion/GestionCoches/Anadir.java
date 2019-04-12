@@ -19,6 +19,8 @@ import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
@@ -151,21 +153,64 @@ public class Anadir extends JFrame {
 		modelocomboBox.setFont(new Font("Calibri", Font.BOLD, 18));
 		modelocomboBox.setBounds(333, 56, 100, 30);
 		contentPane.add(modelocomboBox);
-		
+
 		textMatricula = new JTextField();
 		textMatricula.setFont(new Font("Calibri", Font.BOLD, 18));
 		textMatricula.setColumns(10);
 		textMatricula.setBounds(104, 97, 100, 26);
 		contentPane.add(textMatricula);
-		
+
 		JButton btnAadir = new JButton("A\u00F1adir");
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(marcacomboBox.getSelectedItem().toString().equals("")) {
+					String nombre = textKM.getText();
+					String ano = textAno.getText();
+					String precio = textPrecio.getText();
+					String matricula = textMatricula.getText();
+
+					Pattern pat = Pattern.compile("^([0-9]){0,10}$");
+					Matcher mat = pat.matcher(nombre);
+
+					Pattern patano = Pattern.compile("^([0-9]){0,4}$");
+					Matcher matano = patano.matcher(ano);
+
+					Pattern patprecio = Pattern.compile("^([0-9]){0,10}$");
+					Matcher matprecio = patprecio.matcher(precio);
+
+					Pattern patmatricula = Pattern.compile("([0-9]{4})([A-Z]{3})");
+					Matcher matmatricula = patmatricula.matcher(matricula);
+
+					if (marcacomboBox.getSelectedItem().toString().equals("")
+							|| modelocomboBox.getSelectedItem().toString().equals("")
+							|| textMatricula.getText().equals("") || textKM.getText().equals("")
+							|| textPrecio.getText().equals("") || textAno.equals("")) {
 						JOptionPane.showMessageDialog(null, "Por favor, rellena todos los campos");
-					}else {
-					anadir.anadir(marcacomboBox, modelocomboBox, textAno, textKM, textPrecio, textMatricula);
+					} else {
+						if (mat.find()) {
+							if (matano.find()) {
+								if (matprecio.find()) {
+									if (matmatricula.find()) {
+										anadir.anadir(marcacomboBox, modelocomboBox, textAno, textKM, textPrecio,
+												textMatricula);
+									} else {
+										JOptionPane.showMessageDialog(null,
+												"El campo matricula tiene que contener el formato europeo.\nFormato europeo: 1234ABC");
+									}
+
+								} else {
+									JOptionPane.showMessageDialog(null, "El campo precio solo puede contener numeros.");
+								}
+							} else {
+								JOptionPane.showMessageDialog(null,
+										"El campo año tiene que estar compuesto por un maximo de 4 numeros");
+							}
+
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"Los campos de kilometros solo pueden contener numeros");
+						}
+
 					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -177,7 +222,7 @@ public class Anadir extends JFrame {
 		btnAadir.setBackground(Color.LIGHT_GRAY);
 		btnAadir.setBounds(10, 181, 156, 36);
 		contentPane.add(btnAadir);
-		
+
 		JButton button = new JButton("Volver al menu");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -19,7 +19,11 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 
@@ -75,16 +79,30 @@ public class Borrar extends JFrame {
 		textMatricula.setColumns(10);
 		textMatricula.setBounds(10, 81, 156, 26);
 		contentPane.add(textMatricula);
+		textMatricula.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				textMatricula.setText("");
+			}
+		});
 		
 		JButton btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					if(modificar.comprobarMatricula(textMatricula)) {
-					borrar.borrar(textMatricula);
+					String matricula = textMatricula.getText();
+					Pattern patmatricula = Pattern.compile("([0-9]{4})([A-Z]{3})");
+					Matcher matmatricula = patmatricula.matcher(matricula);
+					if(matmatricula.find()) {
+						if(modificar.comprobarMatricula(textMatricula)) {
+							borrar.borrar(textMatricula);
+							}else {
+								JOptionPane.showMessageDialog(null, "Matricula no encontrada en la base de datos", "Error matricula", 1);
+							}
 					}else {
-						JOptionPane.showMessageDialog(null, "Matricula no encontrada en la base de datos", "Error matricula", 1);
+						JOptionPane.showMessageDialog(null,
+								"El campo matricula tiene que contener el formato europeo.\nFormato europeo: 1234ABC");
 					}
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

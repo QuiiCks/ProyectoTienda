@@ -14,6 +14,8 @@ import Controladores.Coches.modeloCoche;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +26,8 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ItemEvent;
 import javax.swing.JTextField;
 import javax.swing.JTable;
@@ -109,64 +113,63 @@ public class Listar extends JFrame {
 		marcacomboBox.addItem("Volvo");
 
 		JComboBox modelocomboBox = new JComboBox();
-		modelocomboBox.setModel(new DefaultComboBoxModel(new String[] {"Cualquiera"}));
+		modelocomboBox.setModel(new DefaultComboBoxModel(new String[] { "Cualquiera" }));
 		modelocomboBox.setFont(new Font("Calibri", Font.BOLD, 18));
 		modelocomboBox.setBounds(120, 87, 131, 30);
 		modelocomboBox.setVisible(true);
 		contentPane.add(modelocomboBox);
-		
+
 		JLabel lblAo = new JLabel("A\u00F1o");
 		lblAo.setFont(new Font("Calibri", Font.BOLD, 18));
 		lblAo.setBounds(10, 126, 133, 26);
 		contentPane.add(lblAo);
-		
+
 		textAno = new JTextField();
 		textAno.setFont(new Font("Calibri", Font.BOLD, 18));
 		textAno.setColumns(10);
 		textAno.setBounds(120, 128, 133, 26);
 		contentPane.add(textAno);
-		textAno.addMouseListener(new MouseAdapter(){
-            public void mouseClicked(MouseEvent e){
-             textAno.setText("");
-            }
-        });
-		
+		// EXPRESION REGULAR
+
+		textAno.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				textAno.setText("");
+			}
+		});
+
 		JLabel lblRangoDeKilometros = new JLabel("Rango de kilometros");
 		lblRangoDeKilometros.setFont(new Font("Calibri", Font.BOLD, 18));
 		lblRangoDeKilometros.setBounds(10, 163, 167, 26);
 		contentPane.add(lblRangoDeKilometros);
-		
+
 		textKM0 = new JTextField();
 		textKM0.setText("0");
 		textKM0.setFont(new Font("Calibri", Font.BOLD, 18));
 		textKM0.setColumns(10);
 		textKM0.setBounds(10, 192, 81, 26);
 		contentPane.add(textKM0);
-		
+
 		textKM1 = new JTextField();
 		textKM1.setText("2000000");
 		textKM1.setFont(new Font("Calibri", Font.BOLD, 18));
 		textKM1.setColumns(10);
 		textKM1.setBounds(152, 192, 81, 26);
 		contentPane.add(textKM1);
-		
+
 		JLabel lblHasta = new JLabel("hasta");
 		lblHasta.setFont(new Font("Calibri", Font.BOLD, 18));
 		lblHasta.setBounds(101, 192, 41, 26);
 		contentPane.add(lblHasta);
-		
-		Object titulos [] = {"Matricula", "Marca", "Modelo", "Año", "KM", "Precio"};
-		Object celdas [][] = new Object [12][6];
+
+		Object titulos[] = { "Matricula", "Marca", "Modelo", "Año", "KM", "Precio" };
+		Object celdas[][] = new Object[12][6];
 		JScrollPane scroll = new JScrollPane();
-	    JTable tablaConsulta=new JTable(celdas, titulos);
+		JTable tablaConsulta = new JTable(celdas, titulos);
 		tablaConsulta.setBounds(281, 48, 469, 170);
 
 		scroll.setViewportView(tablaConsulta);
 		scroll.setBounds(263, 47, 497, 217);
 		getContentPane().add(scroll);
-		
-		
-		
 
 		String marca = (String) marcacomboBox.getSelectedItem();
 
@@ -184,13 +187,13 @@ public class Listar extends JFrame {
 				}
 			}
 		});
-		
+
 		JButton buttonFiltrar = new JButton("Filtrar");
 		buttonFiltrar.setFont(new Font("Calibri", Font.BOLD, 18));
 		buttonFiltrar.setBackground(Color.LIGHT_GRAY);
 		buttonFiltrar.setBounds(10, 228, 241, 36);
 		contentPane.add(buttonFiltrar);
-		
+
 		JButton buttonMenu = new JButton("Volver al menu");
 		buttonMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -205,14 +208,34 @@ public class Listar extends JFrame {
 		buttonFiltrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent es) {
 				try {
-					filtrar.filtrar(marcacomboBox, modelocomboBox, textAno, textKM0, textKM1, tablaConsulta);
+					String nombre = textAno.getText();
+
+					Pattern pat = Pattern.compile("^([0-9]){0,4}$");
+					Matcher mat = pat.matcher(nombre);
+
+					String kilometros1 = textKM0.getText();
+					String kilometros2 = textKM1.getText();
+					Pattern patkm = Pattern.compile("^([0-9]){0,10}$");
+					Matcher matkm1 = patkm.matcher(kilometros1);
+					Matcher matkm2 = patkm.matcher(kilometros2);
+
+					if (mat.find()) {
+						if (matkm1.find() && matkm2.find()) {
+							filtrar.filtrar(marcacomboBox, modelocomboBox, textAno, textKM0, textKM1, tablaConsulta);
+						}else {
+							JOptionPane.showMessageDialog(null, "Los campos de kilometros solo pueden contener numeros");
+						}
+					}else {
+						JOptionPane.showMessageDialog(null, "El campo año tiene que estar compuesto por un maximo de 4 numeros");
+					}
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
-		
+
 	}
-	
+
 }

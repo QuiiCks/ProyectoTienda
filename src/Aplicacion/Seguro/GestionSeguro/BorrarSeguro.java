@@ -25,6 +25,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.beans.PropertyChangeEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
@@ -108,7 +110,17 @@ public class BorrarSeguro extends JFrame {
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					borrar_seguro.borrar(textMatricula, comboBoxMiembro);
+					String matricula = textMatricula.getText();
+					
+					Pattern patmatricula = Pattern.compile("([0-9]{4})([A-Z]{3})");
+					Matcher matmatricula = patmatricula.matcher(matricula);
+					if(matmatricula.find()) {
+						borrar_seguro.borrar(textMatricula, comboBoxMiembro);
+					}else {
+						JOptionPane.showMessageDialog(null,
+								"El campo matricula tiene que contener el formato europeo.\nFormato europeo: 1234ABC");
+					}
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

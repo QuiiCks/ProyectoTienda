@@ -7,12 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Aplicacion.GestionCoches.Modificar;
 import Aplicacion.Seguro.Seguro;
+import Controladores.Coches.modificar;
 import Controladores.Seguro.listar_seguro;
 
 import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -20,6 +24,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 
 public class ListarSeguro extends JFrame {
@@ -105,7 +111,16 @@ public class ListarSeguro extends JFrame {
 		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					listar_seguro.listarMiembros(textMatricula, tablaConsulta);
+					String matricula = textMatricula.getText();
+					Pattern patmatricula = Pattern.compile("([0-9]{4})([A-Z]{3})");
+					Matcher matmatricula = patmatricula.matcher(matricula);
+					if(matmatricula.find()) {
+						listar_seguro.listarMiembros(textMatricula, tablaConsulta);
+					}else {
+						JOptionPane.showMessageDialog(null,
+								"El campo matricula tiene que contener el formato europeo.\nFormato europeo: 1234ABC");
+					}
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
