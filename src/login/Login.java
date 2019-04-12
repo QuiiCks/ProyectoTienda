@@ -91,12 +91,16 @@ public class Login extends JFrame {
 				String usuario = textUser.getText();
 				String pass = textPassword.getText();
 					try {
-						buttons.buttonLogin(textUser, textPassword);
+						if(buttons.buttonLogin(textUser, textPassword)) {
+							setVisible(false);
+							
+						}
+						
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-						setVisible(false);
+						
 						if(checkRecuerdame.isSelected()) {
 							FileWriter writer;
 							try {
@@ -132,8 +136,10 @@ public class Login extends JFrame {
 		JButton buttonRegister = new JButton("Register");
 		buttonRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Register.main(null);
+				Register frame = new Register();
+				frame.setVisible(true);
 				setVisible(false);
+				
 			}
 		});
 		buttonRegister.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));

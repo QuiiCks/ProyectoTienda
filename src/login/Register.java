@@ -24,21 +24,6 @@ public class Register extends JFrame {
 	private JTextField textPassword;
 	private JTextField textUser;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Register frame = new Register();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -88,11 +73,13 @@ public class Register extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Controladores.Login.buttons.buttonRegister(textUser, textPassword);
-					Login.main(null);
+					Login frame = new Login();
+					frame.setVisible(true);
 					setVisible(false);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
-					Login.main(null);
+					Login frame = new Login();
+					frame.setVisible(true);
 					setVisible(false);
 				}
 			}

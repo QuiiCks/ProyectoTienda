@@ -29,7 +29,7 @@ public class buttons {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static void buttonLogin(JTextField textUser, JTextField textPassword) throws SQLException {
+	public static boolean buttonLogin(JTextField textUser, JTextField textPassword) throws SQLException {
 
 		String usuario = textUser.getText();
 		String pass = textPassword.getText();
@@ -67,19 +67,21 @@ public class buttons {
 						labelRol.setVisible(true);
 						MenuTiendaAdmin.setLabelRol(labelRol);
 						MenuTiendaAdmin.main(null);
+
 						
 					}
+					return true;
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
-					Login.main(null);
+					
 				}
 			}
 
 		} else {
 			JOptionPane.showMessageDialog(null, "Usuario incorrecto");
-			Login.main(null);
-		}
+					}
+		return false;
 	}
 
 	/**

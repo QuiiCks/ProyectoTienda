@@ -139,7 +139,8 @@ public class MenuTiendaAdmin extends JFrame {
 		JButton button = new JButton("Cerrar Sesi\u00F3n");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Login.main(null);
+				Login frame = new Login();
+				frame.setVisible(true);
 				setVisible(false);
 			}
 		});
