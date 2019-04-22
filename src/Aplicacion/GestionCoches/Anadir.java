@@ -178,7 +178,7 @@ public class Anadir extends JFrame {
 					Pattern patprecio = Pattern.compile("^([0-9]){0,10}$");
 					Matcher matprecio = patprecio.matcher(precio);
 
-					Pattern patmatricula = Pattern.compile("([0-9]{4})([A-Z]{3})");
+					Pattern patmatricula = Pattern.compile("([0-9]{4})([A-Z]{3})$");
 					Matcher matmatricula = patmatricula.matcher(matricula);
 
 					if (marcacomboBox.getSelectedItem().toString().equals("")

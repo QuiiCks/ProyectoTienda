@@ -144,7 +144,8 @@ public class MenuGestionUsuarios extends JFrame {
 		JButton btnAadir = new JButton("A\u00F1adir");
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Register.main(null);
+				Register frame = new Register();
+				frame.setVisible(true);
 				setVisible(false);
 			}
 		});

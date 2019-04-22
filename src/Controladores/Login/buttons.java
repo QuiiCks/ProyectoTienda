@@ -3,6 +3,7 @@ package Controladores.Login;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.nio.channels.ShutdownChannelGroupException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -94,16 +95,23 @@ public class buttons {
 	public static void buttonRegister(JTextField textUser, JTextField textPassword) throws SQLException {
 		String usuario = textUser.getText();
 		String password = textPassword.getText();
+		
+		comprobarUsuario comprobar = new comprobarUsuario();
+		if(!comprobar.comprobarUsuario(usuario)) {
+			Statement consulta = conexion.conexionBBDD().createStatement();
+			int resultado;
+			PreparedStatement consultaprep = conexion.conexionBBDD()
+					.prepareStatement("INSERT INTO users (user,password,rol) VALUES (?, ?, '')");
+			consultaprep.setString(1, usuario);
+			consultaprep.setString(2, password);
+			resultado = consultaprep.executeUpdate();
+			JOptionPane.showMessageDialog(null,
+					"Se ha añadido el usuario " + usuario + " con contraseña " + password + " en la base de datos.");
+		}else {
+			JOptionPane.showMessageDialog(null, "El usuario ya existe.");
+		}
 
-		Statement consulta = conexion.conexionBBDD().createStatement();
-		int resultado;
-		PreparedStatement consultaprep = conexion.conexionBBDD()
-				.prepareStatement("INSERT INTO users (user,password,rol) VALUES (?, ?, '')");
-		consultaprep.setString(1, usuario);
-		consultaprep.setString(2, password);
-		resultado = consultaprep.executeUpdate();
-		JOptionPane.showMessageDialog(null,
-				"Se ha añadido el usuario " + usuario + " con contraseña " + password + " en la base de datos.");
+		
 
 	}
 

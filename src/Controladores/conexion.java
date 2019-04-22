@@ -1,12 +1,15 @@
 package Controladores;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class conexion {
 	/**
 	 * METODO PARA CONECTAR CON LA BASE DE DATOS
+	 * 
 	 * @return
 	 * @throws SQLException
 	 */
@@ -21,4 +24,5 @@ public class conexion {
 		Connection conexion = DriverManager.getConnection(url, user, password);
 		return conexion;
 	}
+
 }
