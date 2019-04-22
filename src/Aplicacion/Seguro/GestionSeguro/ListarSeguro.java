@@ -38,22 +38,17 @@ public class ListarSeguro extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ListarSeguro frame = new ListarSeguro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+		ListarSeguro frame = new ListarSeguro();
+		frame.setVisible(true);
+
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public ListarSeguro() {
+		listar_seguro controlador = new listar_seguro();
 		setTitle("JaShop - Listar miembros seguro");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarSeguro.class.getResource("/recursos/Logo.png")));
 		setResizable(false);
@@ -64,26 +59,24 @@ public class ListarSeguro extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblListarMiembrosDel = new JLabel("Listar miembros del seguro");
 		lblListarMiembrosDel.setForeground(Color.WHITE);
 		lblListarMiembrosDel.setFont(new Font("Lucida Handwriting", Font.BOLD, 22));
 		lblListarMiembrosDel.setBounds(10, 0, 389, 49);
 		contentPane.add(lblListarMiembrosDel);
-		
+
 		JLabel lblMatricula = new JLabel("Matricula");
 		lblMatricula.setFont(new Font("Calibri", Font.BOLD, 18));
 		lblMatricula.setBounds(26, 111, 82, 26);
 		contentPane.add(lblMatricula);
-		
+
 		textMatricula = new JTextField();
 		textMatricula.setFont(new Font("Calibri", Font.BOLD, 18));
 		textMatricula.setColumns(10);
 		textMatricula.setBounds(118, 111, 133, 26);
 		contentPane.add(textMatricula);
-		
-		
-		
+
 		JButton button = new JButton("Volver al menu");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -95,18 +88,17 @@ public class ListarSeguro extends JFrame {
 		button.setBackground(Color.LIGHT_GRAY);
 		button.setBounds(10, 213, 241, 36);
 		contentPane.add(button);
-		
 
-		Object titulos [] = {"Matricula", "Nombre", "Primer apellido", "Segundo apellido", "Direccion de correo"};
-		Object celdas [][] = new Object [12][6];
+		Object titulos[] = { "Matricula", "Nombre", "Primer apellido", "Segundo apellido", "Direccion de correo" };
+		Object celdas[][] = new Object[12][6];
 		JScrollPane scroll = new JScrollPane();
-	    JTable tablaConsulta=new JTable(celdas, titulos);
+		JTable tablaConsulta = new JTable(celdas, titulos);
 		tablaConsulta.setBounds(281, 48, 469, 170);
-		
+
 		scroll.setViewportView(tablaConsulta);
 		scroll.setBounds(263, 47, 649, 202);
 		getContentPane().add(scroll);
-		
+
 		JButton btnListar = new JButton("Listar");
 		btnListar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -114,13 +106,13 @@ public class ListarSeguro extends JFrame {
 					String matricula = textMatricula.getText();
 					Pattern patmatricula = Pattern.compile("([0-9]{4})([A-Z]{3})");
 					Matcher matmatricula = patmatricula.matcher(matricula);
-					if(matmatricula.find()) {
-						listar_seguro.listarMiembros(textMatricula, tablaConsulta);
-					}else {
+					if (matmatricula.find()) {
+						controlador.listarMiembros(textMatricula, tablaConsulta);
+					} else {
 						JOptionPane.showMessageDialog(null,
 								"El campo matricula tiene que contener el formato europeo.\nFormato europeo: 1234ABC");
 					}
-					
+
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -131,6 +123,6 @@ public class ListarSeguro extends JFrame {
 		btnListar.setBackground(Color.LIGHT_GRAY);
 		btnListar.setBounds(10, 166, 241, 36);
 		contentPane.add(btnListar);
-		
+
 	}
 }

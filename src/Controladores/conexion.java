@@ -13,7 +13,7 @@ public class conexion {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static Connection conexionBBDD() throws SQLException {
+	public Connection conexionBBDD() throws SQLException {
 		// CONEXION CON LA BASE DE DATOS
 		String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 		String dbName = "ProyectoTienda";

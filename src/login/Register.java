@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controladores.Login.buttons;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -72,7 +75,8 @@ public class Register extends JFrame {
 		buttonFinish.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Controladores.Login.buttons.buttonRegister(textUser, textPassword);
+					buttons botones = new buttons();		
+					botones.buttonRegister(textUser, textPassword);
 					Login frame = new Login();
 					frame.setVisible(true);
 					setVisible(false);

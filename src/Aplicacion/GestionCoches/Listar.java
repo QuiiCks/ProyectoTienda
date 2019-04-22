@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import Aplicacion.MenuTiendaAdmin;
+import Controladores.Coches.comprobarMatricula;
 import Controladores.Coches.filtrar;
 import Controladores.Coches.modeloCoche;
 
@@ -47,16 +48,10 @@ public class Listar extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Listar frame = new Listar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+		Listar frame = new Listar();
+		frame.setVisible(true);
+
 	}
 
 	/**
@@ -172,6 +167,7 @@ public class Listar extends JFrame {
 		getContentPane().add(scroll);
 
 		String marca = (String) marcacomboBox.getSelectedItem();
+		modeloCoche controlador = new modeloCoche();
 
 		// Listener para controlar ambos comboBox
 		marcacomboBox.addItemListener(new ItemListener() {
@@ -182,7 +178,7 @@ public class Listar extends JFrame {
 					// predeterminado
 					if (marcacomboBox.getSelectedIndex() > 0) {
 						modelocomboBox.setModel(new DefaultComboBoxModel(
-								modeloCoche.getModelos(marcacomboBox.getSelectedItem().toString())));
+								controlador.getModelos(marcacomboBox.getSelectedItem().toString())));
 					}
 				}
 			}
@@ -221,12 +217,15 @@ public class Listar extends JFrame {
 
 					if (mat.find()) {
 						if (matkm1.find() && matkm2.find()) {
-							filtrar.filtrar(marcacomboBox, modelocomboBox, textAno, textKM0, textKM1, tablaConsulta);
-						}else {
-							JOptionPane.showMessageDialog(null, "Los campos de kilometros solo pueden contener numeros");
+							filtrar controlador = new filtrar();
+							controlador.filtrar(marcacomboBox, modelocomboBox, textAno, textKM0, textKM1, tablaConsulta);
+						} else {
+							JOptionPane.showMessageDialog(null,
+									"Los campos de kilometros solo pueden contener numeros");
 						}
-					}else {
-						JOptionPane.showMessageDialog(null, "El campo año tiene que estar compuesto por un maximo de 4 numeros");
+					} else {
+						JOptionPane.showMessageDialog(null,
+								"El campo año tiene que estar compuesto por un maximo de 4 numeros");
 					}
 
 				} catch (SQLException e) {

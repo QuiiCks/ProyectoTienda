@@ -9,7 +9,7 @@ public class modeloCoche {
 	 * @param marca
 	 * @return
 	 */
-	public static String[] getModelos(String marca) {
+	public String[] getModelos(String marca) {
 		String[] modelo = new String[15];
 		if (marca.equalsIgnoreCase("Seat")) {
 			modelo[0] = "Cualquiera";
@@ -152,7 +152,7 @@ public class modeloCoche {
 	 * @param marca
 	 * @return
 	 */
-	public static String[] getModelosAdd(String marca) {
+	public String[] getModelosAdd(String marca) {
 		String[] modelo = new String[15];
 		if (marca.equalsIgnoreCase("Seat")) {
 			modelo[0] = "Ibiza";

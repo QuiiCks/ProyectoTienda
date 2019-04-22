@@ -30,16 +30,10 @@ public class Seguro extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Seguro frame = new Seguro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+		Seguro frame = new Seguro();
+		frame.setVisible(true);
+
 	}
 
 	/**
@@ -56,13 +50,13 @@ public class Seguro extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblSeguro = new JLabel("Seguro");
 		lblSeguro.setForeground(Color.WHITE);
 		lblSeguro.setFont(new Font("Lucida Handwriting", Font.BOLD, 22));
 		lblSeguro.setBounds(10, 11, 156, 49);
 		contentPane.add(lblSeguro);
-		
+
 		JButton btnListarMiembros = new JButton("Listar miembros");
 		btnListarMiembros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -73,7 +67,7 @@ public class Seguro extends JFrame {
 		btnListarMiembros.setFont(new Font("Calibri", Font.BOLD, 19));
 		btnListarMiembros.setBounds(10, 57, 190, 50);
 		contentPane.add(btnListarMiembros);
-		
+
 		JButton btnAadirAlSeguro = new JButton("A\u00F1adir al seguro");
 		btnAadirAlSeguro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -84,7 +78,7 @@ public class Seguro extends JFrame {
 		btnAadirAlSeguro.setFont(new Font("Calibri", Font.BOLD, 19));
 		btnAadirAlSeguro.setBounds(10, 118, 190, 50);
 		contentPane.add(btnAadirAlSeguro);
-		
+
 		JButton btnBorrarDelSeguro = new JButton("Borrar del seguro");
 		btnBorrarDelSeguro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -95,7 +89,7 @@ public class Seguro extends JFrame {
 		btnBorrarDelSeguro.setFont(new Font("Calibri", Font.BOLD, 19));
 		btnBorrarDelSeguro.setBounds(10, 179, 190, 50);
 		contentPane.add(btnBorrarDelSeguro);
-		
+
 		JButton btnVolverAlMen = new JButton("Volver al men\u00FA");
 		btnVolverAlMen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -106,7 +100,7 @@ public class Seguro extends JFrame {
 		btnVolverAlMen.setFont(new Font("Calibri", Font.BOLD, 19));
 		btnVolverAlMen.setBounds(222, 179, 190, 50);
 		contentPane.add(btnVolverAlMen);
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(Seguro.class.getResource("/recursos/Logo.png")));
 		label.setBounds(210, 43, 209, 131);

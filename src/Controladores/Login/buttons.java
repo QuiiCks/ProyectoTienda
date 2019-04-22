@@ -21,7 +21,7 @@ import Controladores.conexion;
 import login.Login;
 
 public class buttons {
-
+	conexion con = new conexion();
 	/**
 	 * METODO QUE CONTROLA EL BOTON DE LOGIN PARA ACCEDER A LA APLICACION
 	 * 
@@ -30,15 +30,15 @@ public class buttons {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static boolean buttonLogin(JTextField textUser, JTextField textPassword) throws SQLException {
+	public boolean buttonLogin(JTextField textUser, JTextField textPassword) throws SQLException {
 
 		String usuario = textUser.getText();
 		String pass = textPassword.getText();
 
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		ResultSet resultado;
 		// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR EL USUARIO ESPECIFICO
-		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement("SELECT * FROM users WHERE user = ?");
+		PreparedStatement consultaprep = con.conexionBBDD().prepareStatement("SELECT * FROM users WHERE user = ?");
 		consultaprep.setString(1, usuario);
 		resultado = consultaprep.executeQuery();
 
@@ -92,15 +92,15 @@ public class buttons {
 	 * @param textPassword
 	 * @throws SQLException
 	 */
-	public static void buttonRegister(JTextField textUser, JTextField textPassword) throws SQLException {
+	public void buttonRegister(JTextField textUser, JTextField textPassword) throws SQLException {
 		String usuario = textUser.getText();
 		String password = textPassword.getText();
 		
 		comprobarUsuario comprobar = new comprobarUsuario();
 		if(!comprobar.comprobarUsuario(usuario)) {
-			Statement consulta = conexion.conexionBBDD().createStatement();
+			Statement consulta = con.conexionBBDD().createStatement();
 			int resultado;
-			PreparedStatement consultaprep = conexion.conexionBBDD()
+			PreparedStatement consultaprep = con.conexionBBDD()
 					.prepareStatement("INSERT INTO users (user,password,rol) VALUES (?, ?, '')");
 			consultaprep.setString(1, usuario);
 			consultaprep.setString(2, password);

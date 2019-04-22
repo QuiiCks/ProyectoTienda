@@ -91,7 +91,8 @@ public class Login extends JFrame {
 				String usuario = textUser.getText();
 				String pass = textPassword.getText();
 					try {
-						if(buttons.buttonLogin(textUser, textPassword)) {
+						buttons botones = new buttons();
+						if(botones.buttonLogin(textUser, textPassword)) {
 							setVisible(false);
 							
 						}

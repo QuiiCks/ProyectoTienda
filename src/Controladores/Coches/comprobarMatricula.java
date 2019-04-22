@@ -14,13 +14,14 @@ import Controladores.conexion;
  *
  */
 public class comprobarMatricula {
-	public static boolean comprobarMatricula(JTextField textMatricula) throws SQLException {
+	conexion con = new conexion();
+	public  boolean comprobarMatricula(JTextField textMatricula) throws SQLException {
 		String matricula = textMatricula.getText();
 		
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		ResultSet resultado;
 
-		PreparedStatement consultaprep = conexion.conexionBBDD()
+		PreparedStatement consultaprep = con.conexionBBDD()
 				.prepareStatement("SELECT matricula FROM coches WHERE matricula = ?");
 		consultaprep.setString(1, matricula);
 		resultado = consultaprep.executeQuery();

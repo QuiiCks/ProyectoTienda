@@ -18,7 +18,7 @@ import Aplicacion.GestionCoches.Listar;
 import Controladores.conexion;
 
 public class filtrar {
-	
+	conexion con = new conexion();
 	/**
 	 * METODO PARA FILTRAR LOS VEHICULOS
 	 * @param marcacomboBox
@@ -29,7 +29,7 @@ public class filtrar {
 	 * @param tablaConsultas
 	 * @throws SQLException
 	 */
-	public static void filtrar(JComboBox marcacomboBox, JComboBox modelocomboBox, JTextField textAno,
+	public  void filtrar(JComboBox marcacomboBox, JComboBox modelocomboBox, JTextField textAno,
 			JTextField textKM0, JTextField textKM1, JTable tablaConsultas) throws SQLException {
 
 		String marca = marcacomboBox.getSelectedItem().toString();
@@ -38,7 +38,7 @@ public class filtrar {
 		String kilometro1 = textKM0.getText();
 		String kilometro2 = textKM1.getText();
 
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		ResultSet resultado;
 
 		
@@ -48,7 +48,7 @@ public class filtrar {
 		if (marca.equals("Cualquiera") && ano.equals("")) {
 			limpiarTabla(tablaConsultas);
 
-			PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE KM >=? AND KM <= ?");
+			PreparedStatement consultaprep = con.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE KM >=? AND KM <= ?");
 			consultaprep.setString(1, kilometro1);
 			consultaprep.setString(2, kilometro2);
 			resultado = consultaprep.executeQuery();
@@ -70,7 +70,7 @@ public class filtrar {
 		if (!marca.equals("Cualquiera")) {
 			limpiarTabla(tablaConsultas);
 			// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR SEGUN LOS FILTROS INDICADOS
-			PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE marca = ? AND KM >=? AND KM <= ?");
+			PreparedStatement consultaprep = con.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE marca = ? AND KM >=? AND KM <= ?");
 			consultaprep.setString(1, marca);
 			consultaprep.setString(2, kilometro1);
 			consultaprep.setString(3, kilometro2);
@@ -93,7 +93,7 @@ public class filtrar {
 			limpiarTabla(tablaConsultas);
 			
 			// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR SEGUN LOS FILTROS INDICADOS
-			PreparedStatement consultaprep = conexion.conexionBBDD()
+			PreparedStatement consultaprep = con.conexionBBDD()
 					.prepareStatement("SELECT * FROM coches WHERE marca = ? AND modelo = ? AND KM >=? AND KM <= ?");
 			consultaprep.setString(1, marca);
 			consultaprep.setString(2, modelo);
@@ -118,7 +118,7 @@ public class filtrar {
 		if (marca.equals("Cualquiera") && modelo.equals("Cualquiera") && !ano.equals("")) {
 			limpiarTabla(tablaConsultas);
 			// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR SEGUN LOS FILTROS INDICADOS
-			PreparedStatement consultaprep = conexion.conexionBBDD()
+			PreparedStatement consultaprep = con.conexionBBDD()
 					.prepareStatement("SELECT * FROM coches WHERE ano = ? AND KM >=? AND KM <= ?");
 			consultaprep.setString(1, ano);
 			consultaprep.setString(2, kilometro1);
@@ -142,7 +142,7 @@ public class filtrar {
 		if (!marca.equals("Cualquiera") && !ano.equals("")) {
 			limpiarTabla(tablaConsultas);
 			// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR SEGUN LOS FILTROS INDICADOS
-			PreparedStatement consultaprep = conexion.conexionBBDD()
+			PreparedStatement consultaprep = con.conexionBBDD()
 					.prepareStatement("SELECT * FROM coches WHERE marca = ? AND ano = ? AND KM >=? AND KM <= ?");
 			consultaprep.setString(1, marca);
 			consultaprep.setString(2, ano);
@@ -166,7 +166,7 @@ public class filtrar {
 		if (!marca.equals("Cualquiera") && !modelo.equals("Cualquiera")&&!ano.equals("")) {
 			limpiarTabla(tablaConsultas);
 			// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR SEGUN LOS FILTROS INDICADOS
-			PreparedStatement consultaprep = conexion.conexionBBDD()
+			PreparedStatement consultaprep = con.conexionBBDD()
 					.prepareStatement("SELECT * FROM coches WHERE marca = ? AND modelo = ? AND ano = ? AND KM >=? AND KM <= ?");
 			consultaprep.setString(1, marca);
 			consultaprep.setString(2, modelo);
@@ -190,7 +190,7 @@ public class filtrar {
 	 * METODO PARA LIMPIAR LA TABLA ANTES DE CADA CONSULTA
 	 * @param tablaConsultas
 	 */
-	public static void limpiarTabla(JTable tablaConsultas) {
+	public void limpiarTabla(JTable tablaConsultas) {
 		Object titulos [] = {"Matricula", "Marca", "Modelo", "Año", "KM", "Precio"};
 		Object celdas [][] = new Object [50][6];
 		

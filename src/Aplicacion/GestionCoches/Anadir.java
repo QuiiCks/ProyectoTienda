@@ -42,16 +42,10 @@ public class Anadir extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Anadir frame = new Anadir();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+		Anadir frame = new Anadir();
+		frame.setVisible(true);
+
 	}
 
 	/**
@@ -191,7 +185,8 @@ public class Anadir extends JFrame {
 							if (matano.find()) {
 								if (matprecio.find()) {
 									if (matmatricula.find()) {
-										anadir.anadir(marcacomboBox, modelocomboBox, textAno, textKM, textPrecio,
+										anadir controlador = new anadir();
+										controlador.anadir(marcacomboBox, modelocomboBox, textAno, textKM, textPrecio,
 												textMatricula);
 									} else {
 										JOptionPane.showMessageDialog(null,
@@ -237,6 +232,7 @@ public class Anadir extends JFrame {
 
 		// Listener para controlar ambos comboBox
 		String marca = (String) marcacomboBox.getSelectedItem();
+		modeloCoche controlador = new modeloCoche();
 		marcacomboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent event) {
 				// Verificamos si hay un cambio de seleccion
@@ -245,7 +241,8 @@ public class Anadir extends JFrame {
 					// predeterminado
 					if (marcacomboBox.getSelectedIndex() > 0) {
 						modelocomboBox.setModel(new DefaultComboBoxModel(
-								modeloCoche.getModelosAdd(marcacomboBox.getSelectedItem().toString())));
+								
+								controlador.getModelosAdd(marcacomboBox.getSelectedItem().toString())));
 					}
 				}
 			}

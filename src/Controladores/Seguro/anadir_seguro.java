@@ -13,6 +13,7 @@ import Controladores.conexion;
 import Controladores.Coches.comprobarMatricula;
 
 public class anadir_seguro {
+	conexion con = new conexion();
 	/**
 	 * METODO PARA AÑADIR AL SEGURO LOS CAMPOS INDICADOS
 	 * @param textMatricula
@@ -22,7 +23,7 @@ public class anadir_seguro {
 	 * @param textEmail
 	 * @throws SQLException
 	 */
-	public static void anadiSeguro(JTextField textMatricula, JTextField textNombre, JTextField textApellido1,
+	public void anadiSeguro(JTextField textMatricula, JTextField textNombre, JTextField textApellido1,
 			JTextField textApellido2, JTextField textEmail) throws SQLException {
 		String matricula = textMatricula.getText();
 		String nombre = textNombre.getText();
@@ -30,11 +31,12 @@ public class anadir_seguro {
 		String apellido2 = textApellido2.getText();
 		String email = textEmail.getText();
 
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		int resultado;
-		if(comprobarMatricula.comprobarMatricula(textMatricula)) {
+		comprobarMatricula controlador = new comprobarMatricula();
+		if(controlador.comprobarMatricula(textMatricula)) {
 			if(!nombre.equals("") && !apellido1.equals("") && !apellido2.equals("") && !email.equals("")) {
-				PreparedStatement consultaprep = conexion.conexionBBDD()
+				PreparedStatement consultaprep = con.conexionBBDD()
 						.prepareStatement("INSERT INTO seguro(id_matricula, Nombre, Apellido1, Apellido2, email) VALUES ("
 								+ "(SELECT id FROM coches WHERE matricula = ?),?,?,?,?)");
 				consultaprep.setString(1, matricula);

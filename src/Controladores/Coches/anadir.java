@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import Controladores.conexion;
 
 public class anadir {
-
+	conexion con = new conexion();
 	/**
 	 * METODO PARA AÑADIR UN COCHE
 	 * @param marcacomboBox
@@ -25,7 +25,7 @@ public class anadir {
 	 * @param textMatricula
 	 * @throws SQLException
 	 */
-	public static void anadir(JComboBox marcacomboBox, JComboBox modelocomboBox, JTextField textAno, JTextField textKM,
+	public void anadir(JComboBox marcacomboBox, JComboBox modelocomboBox, JTextField textAno, JTextField textKM,
 			JTextField textPrecio, JTextField textMatricula) throws SQLException {
 		String marca = marcacomboBox.getSelectedItem().toString();
 		String modelo = modelocomboBox.getSelectedItem().toString();
@@ -34,10 +34,10 @@ public class anadir {
 		String precio = textPrecio.getText();
 		String matricula = textMatricula.getText();
 
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		int resultado;
 
-		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement("INSERT INTO coches(Matricula, Marca, Modelo, Ano, Precio, KM) VALUES (?,?,?,?,?,?)");
+		PreparedStatement consultaprep = con.conexionBBDD().prepareStatement("INSERT INTO coches(Matricula, Marca, Modelo, Ano, Precio, KM) VALUES (?,?,?,?,?,?)");
 		consultaprep.setString(1, matricula);
 		consultaprep.setString(2, marca);
 		consultaprep.setString(3, modelo);

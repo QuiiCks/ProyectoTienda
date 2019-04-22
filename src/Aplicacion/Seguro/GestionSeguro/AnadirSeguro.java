@@ -38,22 +38,17 @@ public class AnadirSeguro extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AnadirSeguro frame = new AnadirSeguro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+		AnadirSeguro frame = new AnadirSeguro();
+		frame.setVisible(true);
+
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public AnadirSeguro() {
+		anadir_seguro controlador = new anadir_seguro();
 		setTitle("JaShop - A\u00F1adir al seguro");
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(AnadirSeguro.class.getResource("/recursos/Logo.png")));
@@ -138,25 +133,25 @@ public class AnadirSeguro extends JFrame {
 
 					Pattern patmatricula = Pattern.compile("([0-9]{4})([A-Z]{3})");
 					Matcher matmatricula = patmatricula.matcher(matricula);
-					
+
 					Pattern patnombre = Pattern.compile("[a-zA-ZÀ-ÖØ-öø-ÿ]+\\.?(( |\\-)[a-zA-ZÀ-ÖØ-öø-ÿ]+\\.?)*");
 					Matcher matnombre = patnombre.matcher(nombre);
 					Matcher matapellido1 = patnombre.matcher(apellido1);
-					Matcher matapellido2 =patnombre.matcher(apellido2);
+					Matcher matapellido2 = patnombre.matcher(apellido2);
 
 					Pattern patemail = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-	                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+							+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 					Matcher matemail = patemail.matcher(correo);
 					if (matmatricula.find()) {
 						if (matemail.find()) {
-							if(matnombre.find()&&matapellido1.find()&&matapellido2.find()) {
-								anadir_seguro.anadiSeguro(textMatricula, textNombre, textApellido1, textApellido2,
+							if (matnombre.find() && matapellido1.find() && matapellido2.find()) {
+								controlador.anadiSeguro(textMatricula, textNombre, textApellido1, textApellido2,
 										textEmail);
-							}else {
+							} else {
 								JOptionPane.showMessageDialog(null,
 										"Los campos del nombre solo pueden contener texto y comienzan por mayúscula.");
 							}
-							
+
 						} else {
 							JOptionPane.showMessageDialog(null,
 									"No es un formato de correo valido.\nEjemplo: a@gmail.com");

@@ -42,22 +42,17 @@ public class BorrarSeguro extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BorrarSeguro frame = new BorrarSeguro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+		BorrarSeguro frame = new BorrarSeguro();
+		frame.setVisible(true);
+
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public BorrarSeguro() {
+		borrar_seguro controlador = new borrar_seguro();
 		setTitle("JaShop - Borrar miembros del seguro");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(BorrarSeguro.class.getResource("/recursos/Logo.png")));
 		setResizable(false);
@@ -68,59 +63,55 @@ public class BorrarSeguro extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblBorrarMiembrosDel = new JLabel("Borrar miembros del seguro");
 		lblBorrarMiembrosDel.setForeground(Color.WHITE);
 		lblBorrarMiembrosDel.setFont(new Font("Lucida Handwriting", Font.BOLD, 22));
 		lblBorrarMiembrosDel.setBounds(10, 11, 394, 49);
 		contentPane.add(lblBorrarMiembrosDel);
-		
+
 		JLabel label = new JLabel("Matricula");
 		label.setFont(new Font("Calibri", Font.BOLD, 18));
 		label.setBounds(10, 66, 78, 26);
 		contentPane.add(label);
-		
+
 		textMatricula = new JTextField();
-		
-		
-		
-	
+
 		textMatricula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 			}
 		});
 		textMatricula.setFont(new Font("Calibri", Font.BOLD, 18));
 		textMatricula.setColumns(10);
 		textMatricula.setBounds(90, 66, 103, 26);
 		contentPane.add(textMatricula);
-		
-		
+
 		JLabel lblMiembro = new JLabel("Miembro");
 		lblMiembro.setFont(new Font("Calibri", Font.BOLD, 18));
 		lblMiembro.setBounds(10, 103, 78, 26);
 		contentPane.add(lblMiembro);
-		
+
 		JComboBox comboBoxMiembro = new JComboBox();
 		comboBoxMiembro.setFont(new Font("Calibri", Font.BOLD, 18));
 		comboBoxMiembro.setBounds(90, 103, 265, 30);
 		contentPane.add(comboBoxMiembro);
-		
+
 		JButton btnBorrar = new JButton("Borrar");
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String matricula = textMatricula.getText();
-					
+
 					Pattern patmatricula = Pattern.compile("([0-9]{4})([A-Z]{3})");
 					Matcher matmatricula = patmatricula.matcher(matricula);
-					if(matmatricula.find()) {
-						borrar_seguro.borrar(textMatricula, comboBoxMiembro);
-					}else {
+					if (matmatricula.find()) {
+						controlador.borrar(textMatricula, comboBoxMiembro);
+					} else {
 						JOptionPane.showMessageDialog(null,
 								"El campo matricula tiene que contener el formato europeo.\nFormato europeo: 1234ABC");
 					}
-					
+
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -130,7 +121,7 @@ public class BorrarSeguro extends JFrame {
 		btnBorrar.setFont(new Font("Calibri", Font.BOLD, 19));
 		btnBorrar.setBounds(10, 199, 190, 50);
 		contentPane.add(btnBorrar);
-		
+
 		JButton btnVolverAlMen = new JButton("Volver al men\u00FA");
 		btnVolverAlMen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -141,12 +132,12 @@ public class BorrarSeguro extends JFrame {
 		btnVolverAlMen.setFont(new Font("Calibri", Font.BOLD, 19));
 		btnVolverAlMen.setBounds(214, 199, 190, 50);
 		contentPane.add(btnVolverAlMen);
-		
+
 		JButton btnObtenerMiembros = new JButton("Obtener miembros");
 		btnObtenerMiembros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					borrar_seguro.obtenerMiembros(textMatricula, comboBoxMiembro);
+					controlador.obtenerMiembros(textMatricula, comboBoxMiembro);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -156,9 +147,6 @@ public class BorrarSeguro extends JFrame {
 		btnObtenerMiembros.setFont(new Font("Calibri", Font.BOLD, 13));
 		btnObtenerMiembros.setBounds(203, 66, 152, 26);
 		contentPane.add(btnObtenerMiembros);
-		
-		
-            	
-			
+
 	}
 }

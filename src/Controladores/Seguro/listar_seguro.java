@@ -14,22 +14,23 @@ import javax.swing.table.DefaultTableModel;
 import Controladores.conexion;
 
 public class listar_seguro {
+	conexion con = new conexion();
 	/**
 	 * METODO PARA LISTAR LOS MIEMBROS DE LA MATRICULA INDICADA
 	 * @param textMatricula
 	 * @param tablaConsulta
 	 * @throws SQLException
 	 */
-	public static void listarMiembros(JTextField textMatricula, JTable tablaConsulta) throws SQLException {
+	public  void listarMiembros(JTextField textMatricula, JTable tablaConsulta) throws SQLException {
 		String matricula = textMatricula.getText();
 		boolean registros = false;
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		ResultSet resultado;
 
 		if (!matricula.equals("")) {
 			limpiarTabla(tablaConsulta);
 
-			PreparedStatement consultaprep = conexion.conexionBBDD()
+			PreparedStatement consultaprep = con.conexionBBDD()
 					.prepareStatement("SELECT * FROM seguro WHERE id_matricula = (SELECT id FROM coches WHERE matricula = ?)");
 			consultaprep.setString(1, matricula);
 			resultado = consultaprep.executeQuery();
@@ -56,7 +57,7 @@ public class listar_seguro {
 	 * METODO PARA LIMPIAR LA TABLA AL FILTRAR DE NUEVO
 	 * @param tablaConsultas
 	 */
-	public static void limpiarTabla(JTable tablaConsultas) {
+	public  void limpiarTabla(JTable tablaConsultas) {
 		Object titulos [] = {"Matricula", "Nombre", "Primer apellido", "Segundo apellido", "Direccion de correo"};
 		Object celdas [][] = new Object [50][5];
 		

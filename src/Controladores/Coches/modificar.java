@@ -18,7 +18,7 @@ import Aplicacion.GestionCoches.UpdateMatricula;
 import Controladores.conexion;
 
 public class modificar {
-	
+	conexion con = new conexion();
 
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class modificar {
 	 * @param textPrecio
 	 * @throws SQLException
 	 */
-	public static void actualizar(JTextField textMatricula, JComboBox marcacomboBox, JComboBox modelocomboBox,
+	public  void actualizar(JTextField textMatricula, JComboBox marcacomboBox, JComboBox modelocomboBox,
 			JTextField textAno, JTextField textKM, JTextField textPrecio) throws SQLException {
 
 		String matricula = textMatricula.getText();
@@ -40,10 +40,10 @@ public class modificar {
 		String kilometros = textKM.getText();
 		String precio = textPrecio.getText();
 
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		int resultado;
 
-		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement(
+		PreparedStatement consultaprep = con.conexionBBDD().prepareStatement(
 				"UPDATE Coches SET Matricula = ?, Marca = ?, Modelo = ?, Ano = ?, Precio = ?, KM = ? WHERE Matricula = ?");
 		consultaprep.setString(1, matricula);
 		consultaprep.setString(2, marca);
@@ -66,15 +66,15 @@ public class modificar {
 	 * @param textPrecio
 	 * @throws SQLException
 	 */
-	public static void recogerDatos(JTextField textMatricula, JComboBox marcacomboBox, JComboBox modelocomboBox,
+	public  void recogerDatos(JTextField textMatricula, JComboBox marcacomboBox, JComboBox modelocomboBox,
 			JTextField textAno, JTextField textKM, JTextField textPrecio) throws SQLException {
 
 		String matricula = textMatricula.getText();
 
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		ResultSet resultado;
 
-		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
+		PreparedStatement consultaprep = con.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
 		consultaprep.setString(1, matricula);
 		resultado = consultaprep.executeQuery();
 		if (resultado.next()) {
@@ -86,8 +86,9 @@ public class modificar {
 				}
 			}
 			// RECOGER MODELO
+			modeloCoche controlador = new modeloCoche();
 			modelocomboBox.setModel(
-					new DefaultComboBoxModel(modeloCoche.getModelosAdd(marcacomboBox.getSelectedItem().toString())));
+					new DefaultComboBoxModel(controlador.getModelosAdd(marcacomboBox.getSelectedItem().toString())));
 			for (int i = 0; i < modelocomboBox.getItemCount(); i++) {
 				if (modelocomboBox.getItemAt(i).toString().equals(resultado.getString("Modelo"))) {
 					modelocomboBox.setSelectedItem(resultado.getObject("Modelo"));
@@ -113,13 +114,13 @@ public class modificar {
 	 * @param textMatricula
 	 * @throws SQLException
 	 */
-	public static boolean comprobarMatricula(JTextField textMatricula) throws SQLException {
+	public  boolean comprobarMatricula(JTextField textMatricula) throws SQLException {
 		String matricula = textMatricula.getText();
 
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		ResultSet resultado;
 
-		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
+		PreparedStatement consultaprep = con.conexionBBDD().prepareStatement("SELECT * FROM coches WHERE matricula = ?");
 		consultaprep.setString(1, matricula);
 		resultado = consultaprep.executeQuery();
 		if (resultado.next()) {

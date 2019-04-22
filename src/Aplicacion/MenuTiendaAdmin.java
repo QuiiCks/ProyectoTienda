@@ -45,28 +45,18 @@ import javax.swing.ImageIcon;
  *
  */
 public class MenuTiendaAdmin extends JFrame {
-	
-	/**
-	 * 
-	 */
-	public static  JLabel labelRol = new JLabel(); 
+
+	public static JLabel labelRol = new JLabel();
 	public static JPanel contentPane;
-	
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String []args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuTiendaAdmin frame = new MenuTiendaAdmin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static void main(String[] args) {
+
+		MenuTiendaAdmin frame = new MenuTiendaAdmin();
+		frame.setVisible(true);
+
 	}
 
 	public MenuTiendaAdmin() {
@@ -169,7 +159,7 @@ public class MenuTiendaAdmin extends JFrame {
 		btnSeguro.setFont(new Font("Calibri", Font.BOLD, 19));
 		btnSeguro.setBounds(10, 168, 190, 50);
 		contentPane.add(btnSeguro);
-		
+
 		JLabel label = new JLabel("Rol:");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Lucida Handwriting", Font.BOLD, 22));
@@ -181,14 +171,14 @@ public class MenuTiendaAdmin extends JFrame {
 		labelRol.setBounds(276, 21, 185, 49);
 
 		contentPane.add(getLabelRol());
-		
-		if(getLabelRol().getText().equals("Usuario")) {
+
+		if (getLabelRol().getText().equals("Usuario")) {
 			btnBorrarProductos.setEnabled(false);
 			btnModificarProducto.setEnabled(false);
 			btnGestionUser.setEnabled(false);
 			btnSeguro.setEnabled(false);
 		}
-		
+
 	}
 
 	public static JLabel getLabelRol() {
@@ -199,6 +189,4 @@ public class MenuTiendaAdmin extends JFrame {
 		MenuTiendaAdmin.labelRol = labelRol;
 	}
 
-
-	
 }

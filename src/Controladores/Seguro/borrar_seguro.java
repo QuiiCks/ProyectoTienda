@@ -13,18 +13,20 @@ import Controladores.conexion;
 import Controladores.Coches.comprobarMatricula;
 
 public class borrar_seguro {
+	conexion con = new conexion();
 	/**
 	 * METODO PARA BORRAR EL MIEMBRO DEL SEGURO
 	 * @param textMatricula
 	 * @param comboBoxMiembro
 	 * @throws SQLException
 	 */
-	public static void borrar(JTextField textMatricula, JComboBox comboBoxMiembro) throws SQLException {
+	public void borrar(JTextField textMatricula, JComboBox comboBoxMiembro) throws SQLException {
 		String matricula = textMatricula.getText();
 		
 		
 		if(!matricula.equals("")) {
-			if(comprobarMatricula.comprobarMatricula(textMatricula)) {
+			comprobarMatricula controlador = new comprobarMatricula();
+			if(controlador.comprobarMatricula(textMatricula)) {
 				try {
 					String miembro = comboBoxMiembro.getSelectedItem().toString();
 					String[] partes = miembro.split(" ");
@@ -32,9 +34,9 @@ public class borrar_seguro {
 					String apellido1 = partes[1];
 					String apellido2 = partes[2];
 					if(!miembro.equals("")) {
-						Statement consulta = conexion.conexionBBDD().createStatement();
+						Statement consulta = con.conexionBBDD().createStatement();
 						int resultado;
-						PreparedStatement consultaprep = conexion.conexionBBDD()
+						PreparedStatement consultaprep = con.conexionBBDD()
 								.prepareStatement("DELETE FROM seguro WHERE nombre = ? AND apellido1 = ? AND apellido2 = ?");
 						consultaprep.setString(1, nombre);
 						consultaprep.setString(2, apellido1);
@@ -70,11 +72,11 @@ public class borrar_seguro {
 	 * @param comboBoxMiembro
 	 * @throws SQLException
 	 */
-	public static void obtenerMiembros(JTextField textMatricula, JComboBox comboBoxMiembro) throws SQLException {
+	public void obtenerMiembros(JTextField textMatricula, JComboBox comboBoxMiembro) throws SQLException {
 		String matricula = textMatricula.getText();
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		ResultSet resultado;
-		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement(
+		PreparedStatement consultaprep = con.conexionBBDD().prepareStatement(
 				"SELECT nombre, apellido1, apellido2 FROM seguro WHERE id_matricula = (SELECT id FROM coches WHERE matricula = ?)");
 		consultaprep.setString(1, matricula);
 		resultado = consultaprep.executeQuery();

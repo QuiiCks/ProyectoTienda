@@ -8,11 +8,12 @@ import java.sql.Statement;
 import Controladores.conexion;
 
 public class comprobarUsuario {
+	conexion con = new conexion();
 	public boolean comprobarUsuario(String usuario) throws SQLException {
-		Statement consulta = conexion.conexionBBDD().createStatement();
+		Statement consulta = con.conexionBBDD().createStatement();
 		ResultSet resultado;
 		// CREAMOS UNA CONSULTA PREPARADA PARA BUSCAR EL USUARIO ESPECIFICO
-		PreparedStatement consultaprep = conexion.conexionBBDD().prepareStatement("SELECT * FROM users WHERE user = ?");
+		PreparedStatement consultaprep = con.conexionBBDD().prepareStatement("SELECT * FROM users WHERE user = ?");
 		consultaprep.setString(1, usuario);
 		resultado = consultaprep.executeQuery();
 		if (resultado.next()) {
